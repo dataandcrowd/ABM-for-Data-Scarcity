@@ -65,6 +65,7 @@ to set-urban-areas
     ]]
  ]
  ask patches with [is-built-area? != true][set is-built-area? false]
+ ask patches with [is-built-area? = false and name = "Bexeley"][set is-built-area? true] ;; for some reason Bexeley wasn't added
 
  output-print "Land Cover Allocated" ;;
 end
@@ -209,15 +210,11 @@ to set-inner_south
   let homeID item (3 + random 13) table:get pm2.5_HonorOakPark ticks + 1
   let workID item (3 + random 11) table:get pm2.5_HonorOakPark ticks + 1
 
-  if (Scenario = "BAU")[
-   if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_HonorOakPark ticks + 1]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_HonorOakPark ticks + 1]]
-  ]
+  if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_HonorOakPark ticks + 1]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_HonorOakPark ticks + 1]]
 
-  if (Scenario = "DEC")[
-   if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_HonorOakPark ticks + 1) * 0.60]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_HonorOakPark ticks + 1) * 0.60]]
-  ]
+  if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_HonorOakPark ticks + 1) * 0.60]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_HonorOakPark ticks + 1) * 0.60]]
 
   ;additional_pm25
 
@@ -227,46 +224,35 @@ to set-inner_north
   let homeID item (3 + random 13) table:get pm2.5_NKensington ticks + 1
   let workID item (3 + random 11) table:get pm2.5_NKensington ticks + 1
 
-  if (Scenario = "BAU")[
-   if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_NKensington ticks + 1]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_NKensington ticks + 1]]
-  ]
+  if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_NKensington ticks + 1]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_NKensington ticks + 1]]
 
-  if (Scenario = "DEC")[
-   if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_NKensington ticks + 1) * 0.60]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_NKensington ticks + 1) * 0.60]]
-  ]
-end
+  if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_NKensington ticks + 1) * 0.60]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_NKensington ticks + 1) * 0.60]]
+  end
 
 to set-inner_centre
   let homeID item (3 + random 13) table:get pm2.5_Bloomsbury ticks + 1
   let workID item (3 + random 11) table:get pm2.5_Bloomsbury ticks + 1
 
-  if (Scenario = "BAU")[
-   if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Bloomsbury ticks + 1]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Bloomsbury ticks + 1]]
-  ]
+  if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Bloomsbury ticks + 1]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Bloomsbury ticks + 1]]
 
-  if (Scenario = "DEC")[
-   if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Bloomsbury ticks + 1) * 0.60]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Bloomsbury ticks + 1) * 0.60]]
-  ]
+  if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Bloomsbury ticks + 1) * 0.60]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Bloomsbury ticks + 1) * 0.60]]
 
 end
 
 to set-outer_west
-    let homeID item (3 + random 13) table:get pm2.5_Teddington ticks + 1
+  let homeID item (3 + random 13) table:get pm2.5_Teddington ticks + 1
   let workID item (3 + random 11) table:get pm2.5_Teddington ticks + 1
 
-  if (Scenario = "BAU")[
-   if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Teddington ticks + 1]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Teddington ticks + 1]]
-  ]
+  if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Teddington ticks + 1]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Teddington ticks + 1]]
 
-  if (Scenario = "DEC")[
-   if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Teddington ticks + 1) * 0.60]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Teddington ticks + 1) * 0.60]]
-  ]
+  if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Teddington ticks + 1) * 0.60]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Teddington ticks + 1) * 0.60]]
+
 
 end
 
@@ -274,15 +260,12 @@ to set-outer_east
   let homeID item (3 + random 13) table:get pm2.5_Teddington ticks + 1
   let workID item (3 + random 11) table:get pm2.5_Teddington ticks + 1
 
-  if (Scenario = "BAU")[
-   if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Eltham ticks + 1]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Eltham ticks + 1]]
-  ]
+  if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Eltham ticks + 1]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Eltham ticks + 1]]
 
-  if (Scenario = "DEC")[
-   if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Eltham ticks + 1) * 0.60]]
-   if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Eltham ticks + 1) * 0.60]]
-  ]
+  if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Eltham ticks + 1) * 0.60]]
+  if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Eltham ticks + 1) * 0.60]]
+
 end
 
 
@@ -290,15 +273,12 @@ to set-intercity
   let homeID item (3 + random 13) table:get pm2.5_Harlington ticks + 1
   let workID item (3 + random 11) table:get pm2.5_Harlington ticks + 1
 
-  if (Scenario = "BAU")[
    if (ticks + 1) mod 2 = 0 [ifelse homeID > 0 [set pm2.5 homeID][set pm2.5 max table:get pm2.5_Harlington ticks + 1]]
    if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID][set pm2.5 max table:get pm2.5_Harlington ticks + 1]]
-  ]
 
-  if (Scenario = "DEC")[
    if (ticks + 1 mod 2 = 0) [ifelse homeID > 0 [set pm2.5 homeID * 0.60][set pm2.5 (max table:get pm2.5_Harlington ticks + 1) * 0.60]]
    if ticks       mod 2 = 0 [ifelse workID > 0 [set pm2.5 workID * 0.60][set pm2.5 (max table:get pm2.5_Harlington ticks + 1) * 0.60]]
-  ]
+
 
 end
 
@@ -383,21 +363,11 @@ London Health Sim
 0.0
 1
 
-TEXTBOX
-245
-26
-336
-44
-PM2.5 Trend
-14
-0.0
-1
-
 MONITOR
-97
-98
-189
-143
+108
+23
+200
+68
 Date
 date
 17
@@ -405,10 +375,10 @@ date
 11
 
 MONITOR
-193
-98
-262
-143
+204
+23
+273
+68
 Location
 where
 17
@@ -431,17 +401,39 @@ true
 false
 "" ""
 PENS
-"pm25" 1.0 0 -13840069 true "" "plot [pm2.5] of patch 118 128"
-
-CHOOSER
-243
-48
-335
-93
-Scenario
-Scenario
-"BAU" "DEC"
-0
+"Southwark" 1.0 0 -13840069 true "let southwark_plot [pm2.5] of one-of patches with [name = \"Southwark\"]" "plot [pm2.5] of one-of patches with [name = \"Southwark\"]"
+"pen-1" 1.0 0 -7500403 true "" "plot [pm2.5] of one-of patches with [name = \"Lambeth\"]"
+"pen-2" 1.0 0 -2674135 true "" "plot [pm2.5] of one-of patches with [name = \"Wandsworth\"]"
+"pen-3" 1.0 0 -955883 true "" "plot [pm2.5] of one-of patches with [name = \"Lewisham\"]"
+"pen-4" 1.0 0 -6459832 true "" "plot [pm2.5] of one-of patches with [name = \"Hammersmith and Fulham\"]"
+"pen-5" 1.0 0 -1184463 true "" "plot [pm2.5] of one-of patches with [name = \"Kensington and Chelsea\"]"
+"pen-6" 1.0 0 -10899396 true "" "plot [pm2.5] of one-of patches with [name = \"Haringey\"]"
+"pen-7" 1.0 0 -14835848 true "" "plot [pm2.5] of one-of patches with [name = \"Tower Hamlets\"]"
+"pen-8" 1.0 0 -11221820 true "" "plot [pm2.5] of one-of patches with [name = \"Newham\"]"
+"pen-9" 1.0 0 -13791810 true "" "plot [pm2.5] of one-of patches with [name = \"Westminster\"]"
+"pen-10" 1.0 0 -13345367 true "" "plot [pm2.5] of one-of patches with [name = \"Camden\"]"
+"pen-11" 1.0 0 -8630108 true "" "plot [pm2.5] of one-of patches with [name = \"Islington\"]"
+"pen-12" 1.0 0 -5825686 true "" "plot [pm2.5] of one-of patches with [name = \"Hackney\"]"
+"pen-13" 1.0 0 -2064490 true "" "plot [pm2.5] of one-of patches with [name = \"Enfield\"]"
+"pen-14" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Waltham Forest\"]"
+"pen-15" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Barnet\"]"
+"pen-16" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Brent\"]"
+"pen-17" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Harrow\"]"
+"pen-18" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Ealing\"]"
+"pen-19" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Hounslow\"]"
+"pen-20" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Hillingdon\"]"
+"pen-21" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Richmond upon Thames\"]"
+"pen-22" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Kingston upon Thames\"]"
+"pen-23" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Merton\"]"
+"pen-24" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Sutton\"]"
+"pen-25" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Waltham Forest\"]"
+"pen-26" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Redbridge\"]"
+"pen-27" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Barking and Dagenham\"]"
+"pen-28" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Havering\"]"
+"pen-29" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Greenwich\"]"
+"pen-30" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Bexeley\"]"
+"pen-31" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Bromley\"]"
+"pen-32" 1.0 0 -16777216 true "" "plot [pm2.5] of one-of patches with [name = \"Croydon\"]"
 
 OUTPUT
 15
@@ -450,24 +442,21 @@ OUTPUT
 413
 12
 
-CHOOSER
-270
+BUTTON
+16
 97
-394
-142
-PM2.5-Parameter
-PM2.5-Parameter
-25 10 5
-0
-
-TEXTBOX
-338
-31
-535
-75
-If you are choosing Scenario=DEC\nMake sure you are choosing PM2.5=5
-9
-0.0
+122
+130
+3. Go Ticks
+go
+NIL
+1
+T
+OBSERVER
+NIL
+T
+NIL
+NIL
 1
 
 @#$#@#$#@
