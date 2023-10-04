@@ -20,7 +20,6 @@ to setup
  add-admin
 
  add-pollution
- set-airpollution-scenarios
 end
 ;;---------------------------------
 to go
@@ -65,7 +64,7 @@ to set-urban-areas
     ]]
  ]
  ask patches with [is-built-area? != true][set is-built-area? false]
- ask patches with [is-built-area? = false and name = "Bexeley"][set is-built-area? true] ;; for some reason Bexeley wasn't added
+ ask patches with [is-built-area? = false and name = "Bexley"][set is-built-area? true] ;; for some reason Bexley wasn't added
 
  output-print "Land Cover Allocated" ;;
 end
@@ -101,7 +100,7 @@ to set-district-division
   set inner_ncentre (list "Westminster" "Camden" "Islington" "Hackney")
   set outer_west (list "Enfield" "Waltham Forest" "Barnet" "Brent" "Harrow" "Ealing" "Hounslow" "Hillingdon"
   "Richmond upon Thames" "Kingston upon Thames" "Merton" "Sutton")
-  set outer_east (list "Waltham Forest" "Redbridge" "Barking and Dagenham" "Havering" "Greenwich" "Bexeley"
+  set outer_east (list "Waltham Forest" "Redbridge" "Barking and Dagenham" "Havering" "Greenwich" "Bexley"
   "Bromley" "Croydon")
 
   output-print "set-district-division added"
@@ -147,34 +146,6 @@ set rep rep + 1
  output-print "air pollution installed"
 end
 
-to set-airpollution-scenarios
-;;Scenarios
-  let quarter csv:from-file "Data/London_AQ_Scenario.csv"
-  let q1 remove-item 0 quarter
-  let looop 0
-  set poll_scenario table:make
-
-   foreach q1 [p ->
-    if item 1 p = "pm2.5"
-    [ let counter item 0 p
-      let the-rest remove-item 0 p
-      table:put poll_scenario counter the-rest]
-  ]
-  set looop looop + 1
-
-
-  set scenario_counter 1
-  set scenario_date item 1 table:get poll_scenario scenario_counter
-  if date = scenario_date [set scenario_counter scenario_counter + 1]
-
-
-  set additional_pm25 item 4 table:get poll_scenario scenario_counter
-
-  output-print "Air Pollution Scenarios Added"
-
-end
-
-
 
 to update-interface
   set date item 0 table:get pm2.5_Westminster (ticks + 1)
@@ -190,13 +161,13 @@ to calc-pm10
   ;set inner_ncentre (list "Westminster" "Camden" "Islington" "Hackney")
   ;set outer_west (list "Enfield" "Waltham Forest" "Barnet" "Brent" "Harrow" "Ealing" "Hounslow" "Hillingdon"
   ;"Richmond upon Thames" "Kingston upon Thames" "Merton" "Sutton")
-  ;set outer_east (list "Waltham Forest" "Redbridge" "Barking and Dagenham" "Havering" "Greenwich" "Bexeley" "Bromley" "Croydon")
+  ;set outer_east (list "Waltham Forest" "Redbridge" "Barking and Dagenham" "Havering" "Greenwich" "Bexley" "Bromley" "Croydon")
 
   let theloop 0
-    foreach inner_south [sdistricts -> ask patches with [name = sdistricts][if ticks > 0 [set-inner_south]]]
-    foreach inner_north [ndistricts -> ask patches with [name = ndistricts][if ticks > 0 [set-inner_north]]]
-    foreach inner_ncentre [incentre -> ask patches with [name = incentre][if ticks > 0 [set-inner_centre]]]
-    foreach outer_west [outerwest -> ask patches with [name = outerwest][if ticks > 0 [set-outer_west]]]
+    ;foreach inner_south [sdistricts -> ask patches with [name = sdistricts][if ticks > 0 [set-inner_south]]]
+    ;foreach inner_north [ndistricts -> ask patches with [name = ndistricts][if ticks > 0 [set-inner_north]]]
+    ;foreach inner_ncentre [incentre -> ask patches with [name = incentre][if ticks > 0 [set-inner_centre]]]
+    ;foreach outer_west [outerwest -> ask patches with [name = outerwest][if ticks > 0 [set-outer_west]]]
     foreach outer_east [outereast -> ask patches with [name = outereast][if ticks > 0 [set-outer_west]]]
   set theloop theloop + 1
 
