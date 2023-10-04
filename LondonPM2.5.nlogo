@@ -1,5 +1,5 @@
 extensions [gis csv table]
-globals [gu road IMD lc districtPop districtadminCode %riskpop date where hosp_1564 poll_scenario additional_pm25 hosp_u15 hosp_ov65 hosp_1564new hosp_u15new hosp_ov65new
+globals [gu road lc districtPop districtadminCode %riskpop date where hosp_1564 poll_scenario additional_pm25 hosp_u15 hosp_ov65 hosp_1564new hosp_u15new hosp_ov65new
          pm2.5_Marylebone pm2.5_Westminster  pm2.5_Camden ;; roadside/kerbside stations
          pm2.5_NKensington pm2.5_Bloomsbury pm2.5_HonorOakPark pm2.5_Bexley pm2.5_Teddington pm2.5_Eltham ;; background stations
          pm2.5_Harlington ;; for intercity commuters (moving back and from max pxcor max pycor)
@@ -164,10 +164,10 @@ to calc-pm10
   ;set outer_east (list "Waltham Forest" "Redbridge" "Barking and Dagenham" "Havering" "Greenwich" "Bexley" "Bromley" "Croydon")
 
   let theloop 0
-    ;foreach inner_south [sdistricts -> ask patches with [name = sdistricts][if ticks > 0 [set-inner_south]]]
-    ;foreach inner_north [ndistricts -> ask patches with [name = ndistricts][if ticks > 0 [set-inner_north]]]
-    ;foreach inner_ncentre [incentre -> ask patches with [name = incentre][if ticks > 0 [set-inner_centre]]]
-    ;foreach outer_west [outerwest -> ask patches with [name = outerwest][if ticks > 0 [set-outer_west]]]
+    foreach inner_south [sdistricts -> ask patches with [name = sdistricts][if ticks > 0 [set-inner_south]]]
+    foreach inner_north [ndistricts -> ask patches with [name = ndistricts][if ticks > 0 [set-inner_north]]]
+    foreach inner_ncentre [incentre -> ask patches with [name = incentre][if ticks > 0 [set-inner_centre]]]
+    foreach outer_west [outerwest -> ask patches with [name = outerwest][if ticks > 0 [set-outer_west]]]
     foreach outer_east [outereast -> ask patches with [name = outereast][if ticks > 0 [set-outer_west]]]
   set theloop theloop + 1
 
