@@ -1,30 +1,3 @@
-library(tidyverse)
-library(sf)
-library(mapview)
-library(openair)
-
-##### London Boundary
-ldn_bnd <- read_sf("../London_Boundary_cleaned.shp")
-
-##### Metadata from KCL
- importMeta(source = "kcl") -> ldn_raw
-# 
-# ldn <- na.omit(ldn_raw)
-# 
-# ldn %>% 
-#   filter(site_type != "Industrial") %>%  # for some reason industrial locations don't convert to GB projection
-#   st_as_sf(coords = c("longitude", "latitude"), crs = 4326) -> ldn_sf
-
-ldn_sf <- read_sf("ldn.gpkg")
- 
-mapview(ldn_sf, zcol = "site_type") +
-  mapview(ldn_bnd)
-
-
-ldn_sf %>%
-  group_by(site_type) %>% 
-  summarise(count = n())
-
 
 
 ##### KCL NO2
