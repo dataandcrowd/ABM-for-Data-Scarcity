@@ -1,0 +1,427 @@
+X,Y,site,code,site_type,source
+532494.899394573,180799.358022738,City of London - Bell Wharf Lane,CTA,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park XACT,HP0,Urban Background,kcl
+533695.933893814,173268.033402167,Southwark - South Circular Road,SKC,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Road Aethalometer,MS3,Kerbside,kcl
+533486.259820986,179800.86155688,Southwark - Tower Bridge Road,SK8,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park BL NOX,OP1,Urban Background,kcl
+529901.270067604,183736.752292519,Kings Cross - Tapestry Building,KX8,Urban Background,kcl
+528407.322418636,180961.835684222,Westminster - Mount Street (Grosvenor),GV3,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park LGR Multigas,HPZ,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road ACSM,MS5,Kerbside,kcl
+536471.269513729,174125.051935715,Honor Oak Park Sonic Anemometer,HPX,Urban Background,kcl
+534842.267611823,177511.932513647,Southwark - A2 Old Kent Road FIDAS,SK9,Roadside,kcl
+535246.238360424,179309.890711797,Southwark - Lower Road,SKA,Roadside,kcl
+532902.270169438,176690.929259139,Southwark - Vicarage Grove,SKB,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Road SMPS 3083,MS2,Kerbside,kcl
+551862.205260356,176375.976973112,Bexley - Slade Green Fidas,BQ9,Suburban,kcl
+529660.895392212,180390.784754674,Waterloo Place (The Crown Estate),CE2,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Road XACT,MS0,Kerbside,kcl
+539218.16967805,179249.833431599,Greenwich - Tunnel Avenue,TL4,Roadside,kcl
+539934.123287258,180731.864639674,Newham - Hoola Tower,TL5,Roadside,kcl
+540334.139513481,180259.928417865,Newham - Britannia Gate,TL6,Roadside,kcl
+542632.188201166,183568.89036811,Newham - East Ham Town Hall,NM4,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park SMPS 3083,HP8,Urban Background,kcl
+536471.269513729,174125.051935715,Honor Oak Park Total Carbon Analyser,HPT,Urban Background,kcl
+530125.293980968,165227.124272235,Sutton - Beddington Village,ST9,Roadside,kcl
+528407.322418636,180961.835684222,Westminster - Duke Street (Grosvenor),GV2,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Road Metals Digitel,MS6,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Road EC/OC Digitel,MS7,Kerbside,kcl
+537658.192597777,180089.903887473,Tower Hamlets - Jubilee Park,CW3,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road Total Carbon Analyser,MS4,Kerbside,kcl
+536471.269513729,174125.051935715,Honor Oak Park Aethalometer,OP3,Urban Background,kcl
+533938.811755507,184033.976420266,Hackney - Queensbridge Road,HK9,Roadside,kcl
+535866.171479928,185133.829581285,Hackney - Homerton Library,HN1,Roadside,kcl
+534377.211646621,185239.832601763,Hackney - Amhurst Road,HN0,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park NOX,OP2,Urban Background,kcl
+537544.312630727,173609.520072299,Lewisham - Laurence House Catford,LW6,Roadside,kcl
+532484.973575473,181389.986451993,City of London - Guildhall,CT9,Urban Background,kcl
+537226.246058904,177467.971822207,Lewisham - Deptford,LW5,Urban Background,kcl
+529221.236697262,180801.896756648,Regent Street (The Crown Estate),CE3,Roadside,kcl
+528729.346622752,178660.892798538,Westminster - Elizabeth Bridge,WMD,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park Digitel,HP7,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington Aethalometer 7wl,N7K,Urban Background,kcl
+536471.269513729,174125.051935715,Honor Oak Park Ammonia,HPY,Urban Background,kcl
+525712.539939467,164509.479411145,Sutton - Robin Hood School,ST1,Roadside,kcl
+532527.720148705,180789.318101699,City of London - Walbrook Wharf,CT6,Roadside,kcl
+530511.979785455,181665.965199824,Camden - St Martins College (NOX 1),CD4,Urban Background,kcl
+530511.979785455,181665.965199824,Camden - St Martins College (NOX 2),CD5,Urban Background,kcl
+530248.319203087,177746.908033557,Lambeth 5 - Test,LB0,Roadside,kcl
+543978.693721444,174655.233603262,Greenwich - Eltham,GR4,Suburban,kcl
+552564.194034261,175380.954233164,Bexley 8 - Traffic(W slow - nearest BX8),BQ1,Kerbside,kcl
+532240.153183073,178561.765903536,Southwark - Larcom Street,SK1,Urban Background,kcl
+536470.788805097,174127.498753017,Honor Oak Park SMPS,HP2,Urban Background,kcl
+536471.269513729,174125.051935715,Honor Oak Park URG,HP6,Urban Background,kcl
+536471.269513729,174125.051935715,Honor Oak Park EC/OC Partisol,HP9,Urban Background,kcl
+528923.29577376,163801.174533476,Sutton - Wallington,ST4,Kerbside,kcl
+537509.069916395,180867.504485535,Tower Hamlets - Poplar,TH1,Urban Background,kcl
+535925.18056073,182217.853039367,Tower Hamlets - Mile End Road,TH2,Roadside,kcl
+535100.132463636,182664.068043575,Tower Hamlets - Bethnal Green,TH3,Urban Background,kcl
+532827.261125442,180690.833796277,City of London - Upper Thames Street,CT8,Roadside,kcl
+525774.705792191,174660.689863196,Wandsworth - Wandsworth Town Hall,WA2,Urban Background,kcl
+525770.357238563,174601.989131549,Wandsworth - High Street,WA4,Roadside,kcl
+538389.209164183,186723.745971529,Waltham Forest - Dawlish Road,WL1,Urban Background,kcl
+527776.076562444,164513.261943734,Sutton - Carshalton,ST3,Suburban,kcl
+551053.353195088,187233.110176294,Barking and Dagenham - Rush Green,BG1,Suburban,kcl
+519582.479172827,176492.019913769,Richmond Mobile - Mortlake Rd Kew,RIV,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Road - ClearfLo Partisol,MR5,Kerbside,kcl
+532099.290939404,178828.88162782,Heygate Intel 2,XL2,Urban Background,kcl
+535925.18056073,182217.853039367,Tower Hamlets - Mile End Road,IT2,Roadside,kcl
+523623.422006422,179006.896770886,Hammersmith and Fulham - Brook Green,HF2,Urban Background,kcl
+510371.05566285,177198.550184126,Hounslow - Cranford,HS2,Suburban,kcl
+553108.080121913,182512.846308858,Havering - Rainham,HV1,Roadside,kcl
+551105.139816586,188261.246445433,Havering - Romford,HV3,Roadside,kcl
+518998.42612833,165219.224043212,Canterbury Roadside - St Dunstans,ZY2,Roadside,kcl
+517429.553376104,178061.838249507,Hounslow - Brentford,HS1,Roadside,kcl
+543955.480600222,184432.814226737,Barking and Dagenham - North Street,BG3,Kerbside,kcl
+517423.871278781,178070.274241292,Hounslow - Brentford,HS5,Roadside,kcl
+520866.258377647,185169.29971197,Brent - Ikea,BT4,Roadside,kcl
+536973.254905022,193670.818704042,Waltham Forest - Chingford,WL3,Roadside,kcl
+537802.140788506,186021.771773108,Waltham Forest - Leyton,WL5,Roadside,kcl
+529800.325681706,178958.883478949,Unknown old Westminster site,WM1,Urban Background,kcl
+536471.269513729,174125.051935715,Honor Oak Park CPC,HP4,Urban Background,kcl
+536471.269513729,174125.051935715,Lewisham - Honor Oak Park,HP1,Urban Background,kcl
+536471.269513729,174125.051935715,Honor Oak Park Aethalometer,HP3,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington SMPS,NK2,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington - Nitrate,KC8,Urban Background,kcl
+530442.292356947,180899.832376721,Westminster - Covent Garden,WM5,Urban Background,kcl
+537466.232893287,191071.808264514,Waltham Forest - Crooked Billet,WL4,Kerbside,kcl
+519582.479172827,176492.019913769,Richmond Mobile - Mortlake Rd Kew,RIU,Roadside,kcl
+532525.264496653,180785.831346379,City of London - Walbrook Wharf Indoor,IC6,Roadside,kcl
+516748.500533383,173747.092700125,Richmond Mobile - Richmond Rd Twickenham,RIE,Roadside,kcl
+516748.500533383,173747.092700125,Richmond Mobile - Richmond Rd Twickenham,RIF,Roadside,kcl
+518092.483907768,175264.063789633,Richmond Mobile - Kew Rd,RIC,Kerbside,kcl
+518092.483907768,175264.063789633,Richmond Mobile - Kew Rd,RID,Kerbside,kcl
+531068.27156302,175589.943031938,Lambeth - Brixton Road,LB4,Kerbside,kcl
+517248.546825037,170247.081837008,Richmond Mobile - Upper Teddington Rd,RIG,Roadside,kcl
+517248.546825037,170247.081837008,Richmond Mobile - Upper Teddington Rd,RIH,Roadside,kcl
+528125.457666151,182016.272755576,Westminster - Marylebone Road FDMS,MY7,Kerbside,kcl
+515748.558485705,171247.06845789,Richmond Mobile - Somerset Rd Teddington,RII,Urban Background,kcl
+515748.558485705,171247.06845789,Richmond Mobile - Somerset Rd Teddington,RIJ,Urban Background,kcl
+552615.116474586,175416.350022054,Bexley - Thames Road North FDMS,BX6,Roadside,kcl
+529894.386516405,192223.489472738,Enfield - Bowes Primary School,EN5,Roadside,kcl
+518981.426344119,165217.224035327,Kingston - Kingston Bypass A3,A30,Roadside,kcl
+530120.048200276,182038.807411169,Camden - Bloomsbury,BL0,Urban Background,kcl
+528125.457666151,182016.272755576,Westminster - Marylebone Road,MY1,Kerbside,kcl
+528118.313302603,181996.809676258,Marylebone Road,MY2,Kerbside,kcl
+528118.313302603,181996.809676258,Marylebone Road,MY3,Kerbside,kcl
+544377.769591523,187647.430963878,Redbridge - Perth Terrace,RB1,Urban Background,kcl
+543592.213638991,186414.85429039,Redbridge - Ilford Broadway,RB2,Kerbside,kcl
+524043.37701066,181748.824309853,North Kensington - CO High Sensitivity,NK8,Urban Background,kcl
+529975.280158224,188899.673545388,Haringey  - Priory Park South,HG4,Urban Background,kcl
+532099.290939404,178828.88162782,Heygate Intel 1,XL1,Urban Background,kcl
+544555.41933805,190402.921163646,Redbridge - Fullwell Cross,RB3,Kerbside,kcl
+540823.22779982,188369.750505937,Redbridge - Gardner Close,RB4,Roadside,kcl
+522498.751108974,177165.2480027,Richmond Upon Thames - Castelnau,RI1,Roadside,kcl
+522989.219453277,176729.670722801,Richmond Upon Thames - Barnes Wetlands,RI2,Suburban,kcl
+523838.34591471,165737.194083521,Sutton - North Cheam,ST2,Urban Background,kcl
+530626.135112216,169707.292010863,Croydon - Norbury,CR5,Kerbside,kcl
+531367.293643855,166093.100067075,Croydon - Euston Road,CR6,Suburban,kcl
+533901.215860607,171290.384081636,Crystal Palace - Crystal Palace Parade,CY1,Roadside,kcl
+533898.23558507,195796.664324331,Enfield - Bush Hill Park,EN1,Suburban,kcl
+532628.214548498,196586.648765567,Enfield - Church Street,EN2,Roadside,kcl
+535438.269859013,194996.739214372,Enfield - Salisbury School,EN3,Urban Background,kcl
+535054.284934803,192469.772357528,Enfield - Derby Road,EN4,Roadside,kcl
+544997.932966884,175098.151976724,Greenwich - Falconwood,GB6,Roadside,kcl
+515353.542542165,173989.076426425,Richmond Upon Thames - Chertsey Road,RHG,Roadside,kcl
+538958.249823314,177950.963774156,Greenwich - Trafalgar Road,GR5,Roadside,kcl
+538141.793078857,176710.750502129,Greenwich - Blackheath,GR7,Roadside,kcl
+523418.430991411,178586.908875497,Hammersmith and Fulham - Broadway,HF1,Roadside,kcl
+533891.790226663,190707.106145178,Haringey - Haringey Town Hall,HG1,Roadside,kcl
+529894.217223768,189125.948057738,Haringey - Priory Park,HG2,Urban Background,kcl
+510835.874967073,184916.88005693,Hillingdon - South Ruislip,HI1,Roadside,kcl
+506990.513670123,181925.090239073,Hillingdon - Hillingdon Hospital,HI2,Roadside,kcl
+534830.459593809,186234.244343187,Hackney - Clapton,HK4,Urban Background,kcl
+532947.835451629,182575.725700359,Hackney - Old Street,HK6,Roadside,kcl
+517877.798003863,192314.728943835,Harrow - Stanmore,HR1,Urban Background,kcl
+513504.396039428,188998.238816871,Harrow - Pinner Road,HR2,Roadside,kcl
+518537.64184383,182708.207797449,Ealing - Hanger Lane Gyratory,EA6,Roadside,kcl
+517429.553376104,178061.838249507,Hounslow - Brentford,HS3,Roadside,kcl
+534618.268256113,177666.924501246,Southwark - Old Kent Road,SK2,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington - CPC,NK1,Urban Background,kcl
+516507.513438375,173497.089165452,Richmond Mobile - Richmond Rd Twickenham,RIQ,Roadside,kcl
+531598.239905231,184196.747040814,Islington Black Smoke (ISLINGTON 9),IS3,Urban Background,kcl
+517398.494816492,180696.917489469,Ealing Black Smoke (EALING 7),EG2,Urban Background,kcl
+543998.213248356,186396.855467091,Ilford Black Smoke (ILFORD 6),RB6,Urban Background,kcl
+533798.235101329,195796.662696789,Enfield Black Smoke (ENFIELD 14),EN6,Urban Background,kcl
+538198.253062124,177296.981430916,Greenwich Black Smoke (GREENWICH 9),GR2,Urban Background,kcl
+532398.259598495,181396.816292272,City of London Black Smoke (CITY 16),CT5,Urban Background,kcl
+529800.325681706,178958.883478949,Westminster Black Smoke (WESTMINSTER 17),WM2,Urban Background,kcl
+549978.123066206,179060.949228036,Bexley - Belvedere FDMS,BX0,Suburban,kcl
+520302.467427913,180050.899150189,Ealing - Acton Town Hall (Partisol),EG1,Roadside,kcl
+540398.260972254,169397.089454896,Bromley 8 - TECO NOX,BY8,Roadside,kcl
+512898.573378816,180346.938564689,Ealing Mobile - Hamilton Road,EA4,Roadside,kcl
+513098.567091785,180346.939809599,Ealing Mobile - Southall,EA5,Roadside,kcl
+520688.420703402,173227.087628355,Richmond Mobile - Richmond Park,RI7,Suburban,kcl
+525507.398970712,178264.910160058,Kensington and Chelsea - Green Screen BG,KG2,Urban Background,kcl
+520688.420703402,173227.087628355,Richmond Mobile - Richmond Park,RI8,Suburban,kcl
+517845.482282324,174887.073113968,Richmond Mobile - George Street,RIA,Kerbside,kcl
+517845.482282324,174887.073113968,Richmond Mobile - George Street,RIB,Kerbside,kcl
+528118.313302603,181996.809676258,Marylebone Road Aethalometer,MR3,Kerbside,kcl
+528123.313025271,182012.809259818,CONCAWE - Hyde Park,CO1,Kerbside,kcl
+525173.325932996,183297.73185562,Brent - St Marys Primary School,BT7,Urban Background,kcl
+507598.662461498,176696.93734901,UKMO Heathrow Airport,LH1,Urban Background,kcl
+514321.517382759,184066.8834721,Ealing - Greenford,EI0,Urban Background,kcl
+538297.15940482,181445.846624457,Roving Partisol PM2.5,TL2,Roadside,kcl
+520710.401397332,185160.767733697,Roving Partisol PM10,TL1,Roadside,kcl
+540200.710247098,178367.29787653,Greenwich - Woolwich Flyover,GR8,Roadside,kcl
+513653.369375522,176842.138440481,Hounslow - Heston Road,HS6,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington - ClearfLo Partisol,NK4,Urban Background,kcl
+543978.693721444,174655.233603262,Greenwich - Eltham Ecology Centre Indoor,IG4,Urban Background,kcl
+551862.205260356,176375.976973112,Bexley - Slade Green FDMS,BX9,Suburban,kcl
+528532.088770095,178794.300881132,Westminster - Ebury Street (Grosvenor),GV1,Roadside,kcl
+522557.97929271,165787.960894396,Sutton - Worcester Park,ST6,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Road - BLC NOX,MR7,Kerbside,kcl
+529608.254954364,186226.688382405,Islington - Foxham Gardens,IS4,Urban Background,kcl
+531578.251865812,183186.766499902,Islington - Duncan Terrace,IS5,Roadside,kcl
+513973.56300707,172921.053342511,Richmond Mobile - Lincoln Ave Twickenham,RIS,Roadside,kcl
+513973.56300707,172921.053342511,Richmond Mobile - Lincoln Ave Twickenham,RIT,Roadside,kcl
+548463.107922751,179465.95248781,Bexley - Belvedere West FDMS,BQ8,Urban Background,kcl
+529040.33511342,179204.878882389,Westminster - Victoria,WM8,Urban Background,kcl
+532099.290939404,178828.88162782,Heygate Intel 4,XL4,Urban Background,kcl
+518555.47977535,175457.056955879,Richmond Upon Thames - Lower Mortlake Rd,RHA,Roadside,kcl
+518555.47977535,175457.056955879,Richmond - Lower Mortlake Road,RHB,Roadside,kcl
+519178.490232399,179365.926171767,Hounslow and Ealing - Gunnersbury Avenue,HS8,Roadside,kcl
+531149.285602902,164255.111474827,Croydon - Purley Way A23,CR7,Roadside,kcl
+532099.290939404,178828.88162782,Heygate Intel 5,XL5,Urban Background,kcl
+517245.588157517,170088.278432403,Richmond - Upper Teddington Road,RIW,Roadside,kcl
+517243.548746132,170085.08107687,Richmond - Upper Teddington Road,RIX,Roadside,kcl
+524043.37701066,181748.824309853,Kens and Chelsea 6 - N Ken Par PM10,KC6,Urban Background,kcl
+504778.700050486,175506.947569615,T5 - Main Road,LH4,Urban Background,kcl
+504391.713205991,176587.915455844,T5 - Moorbridge,LH5,Urban Background,kcl
+504464.706814433,175790.939252756,T5 - Bedfont,LH6,Urban Background,kcl
+505183.702867519,176918.905529534,T5 - Green Gates,LH8,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Rd - Traffic,MG2,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Rd - Traffic,MG3,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Rd - Traffic,MG4,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Rd - Traffic,MG5,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Rd - Traffic,MG6,Kerbside,kcl
+530998.278309746,181496.813151046,Met Office - London Weather Centre,MO1,Urban Background,kcl
+528118.313302603,181996.809676258,Marylebone Rd - Partisol PM10 and Magee,MY4,Kerbside,kcl
+528118.313302603,181996.809676258,Marylebone Rd - KFG and MAAP,MY5,Kerbside,kcl
+531622.273315135,181213.817790586,City of London - Farringdon Street,CT2,Kerbside,kcl
+532189.257554224,181862.803237041,City of London - Beech Street,CT4,Roadside,kcl
+520428.446210928,181946.852019021,Ealing - Western Avenue,EI1,Roadside,kcl
+544997.932966884,175098.151976724,Greenwich - Falconwood FDMS,GB0,Roadside,kcl
+548043.595917403,183320.067304657,Barking and Dagenham - Scrattons Farm,BG2,Suburban,kcl
+524034.524604164,175337.596053649,Wandsworth - Putney High Street,WA7,Kerbside,kcl
+538655.421121345,183968.485588549,Newham - Cam Road,NM2,Roadside,kcl
+537909.273212587,175835.016235255,Lewisham - Loampit Vale,LW4,Roadside,kcl
+529800.32747038,178958.813432066,Biomass Partisol - WM0,XP4,Urban Background,kcl
+524044.377025539,181746.824359969,Biomass Partisol - North Ken,XP5,Urban Background,kcl
+511677.580207619,180071.590569398,Biomass Partisol - EA7,XP6,Urban Background,kcl
+530808.286988506,180908.830843175,Kings Micromet Strand Building,KSS,Urban Background,kcl
+515113.556980148,170775.056166086,Teddington Fidas 1,XD1,Suburban,kcl
+532099.290939404,178828.88162782,Heygate Intel 6,XL6,Urban Background,kcl
+533174.537500286,180123.76692396,Hammersmith and Fulham - Talgarth Road A,HFX,Roadside,kcl
+530808.286988506,180908.830843175,Kings Micromet Strand Bldg Sonic,KSR,Urban Background,kcl
+528676.303035948,182162.803525314,Vaisala Road Sensor - Regents Park,VVR,Kerbside,kcl
+529219.29830718,181916.808132562,BT Tower - FDMS,XT3,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington - AMS,NK9,Urban Background,kcl
+520864.396514424,185165.764505425,Brent - Ikea,XB2,Roadside,kcl
+511675.615344064,180067.929424431,Ealing - Southall FDMS,EI7,Urban Background,kcl
+528123.313025271,182012.809259818,CO2 network,CO2,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington APS,XK5,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road - BAM,MR8,Kerbside,kcl
+524043.37701066,181748.824309853,North Kensington Aethalometer 7WL,XK3,Urban Background,kcl
+518560.188405579,169519.297183834,Kingston Upon Thames - Cromwell Road,KT5,Roadside,kcl
+521249.405595346,172163.111398868,Kingston Upon Thames - Kingston Vale,KT6,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Road - Fidas,MS9,Kerbside,kcl
+528761.311430435,181393.823498027,Westminster - Cavendish Square,WMC,Roadside,kcl
+539685.230338264,179119.938180169,Greenwich - John Harrison Way,GN6,Roadside,kcl
+552564.194034261,175380.954233164,Bexley 8 - Traffic(W fast),BQ2,Kerbside,kcl
+552564.194034261,175380.954233164,Bexley 8 - Traffic(E fast),BQ3,Kerbside,kcl
+552564.194034261,175380.954233164,Bexley 8 - Traffic(E slow - nearest BX7),BQ4,Kerbside,kcl
+520864.396514424,185165.764505425,Brent 4 - aethalometer,BT0,Roadside,kcl
+540628.266839983,169137.084317115,Bromley TR Calibrate,BY6,Roadside,kcl
+526627.305979046,184387.750923219,Camden API,CD2,Kerbside,kcl
+515113.556980148,170775.056166086,Teddington KFG 1,TD1,Suburban,kcl
+515113.556980148,170775.056166086,Teddington KFG 2,TD2,Suburban,kcl
+515113.556980148,170775.056166086,Teddington TEOM 1,TD3,Suburban,kcl
+515113.556980148,170775.056166086,Teddington TEOM 2,TD4,Suburban,kcl
+515118.557216524,170881.05694374,London Teddington Bushy Park ,TD5,Suburban,kcl
+515113.556980148,170775.056166086,Teddington FDMS 2,TD6,Suburban,kcl
+515113.556980148,170775.056166086,Teddington Partisol 1,TD7,Suburban,kcl
+515113.556980148,170775.056166086,Teddington Partisol 2,TD8,Suburban,kcl
+538288.159431854,181448.846448496,Tower Hamlets 4 aethalometer,TH0,Roadside,kcl
+512512.589115174,179791.945013638,Ealing - Southall Railway,EI2,Roadside,kcl
+515113.556980148,170775.056166086,TeddingtonGrav PM25 2,TX0,Suburban,kcl
+515113.556980148,170775.056166086,Teddington FDMSB 1,TX1,Suburban,kcl
+515113.556980148,170775.056166086,Teddington FDMSB 2,TX2,Suburban,kcl
+515113.556980148,170775.056166086,Teddington FDMSC 1,TX3,Suburban,kcl
+515113.556980148,170775.056166086,Teddington FDMSC 2,TX4,Suburban,kcl
+515113.556980148,170775.056166086,Teddington TEOM 1,TX5,Suburban,kcl
+515113.556980148,170775.056166086,Teddington TEOM 2,TX6,Suburban,kcl
+515113.556980148,170775.056166086,Teddington Grav PM10 1,TX7,Suburban,kcl
+515113.556980148,170775.056166086,Teddington Grav PM10 2,TX8,Suburban,kcl
+515113.556980148,170775.056166086,Teddington Grav PM25 1,TX9,Suburban,kcl
+529219.29830718,181916.808132562,BT Tower - ClearfLo SMPS,XT1,Urban Background,kcl
+521083.181051161,178501.943003272,Hounslow - Chiswick High Road,HS4,Roadside,kcl
+530827.287383518,180848.832434616,Kings Micromet Kings Bldg Sonic,KSJ,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington - BLC NOX,NK7,Urban Background,kcl
+530526.284490747,181501.81557836,Camden - Holborn (Bee Midtown),IM1,Kerbside,kcl
+528123.313025271,182012.809259818,Portable Sensor - CanariT 405,JC1,Kerbside,kcl
+528123.313025271,182012.809259818,Portable Sensor - CanariT 406,JC2,Kerbside,kcl
+531891.293976409,178842.881680721,Southwark - Elephant and Castle,SK6,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington Composite site,XK1,Urban Background,kcl
+528123.313025271,182012.809259818,Port Talbot Fidas,PF1,Urban Background,kcl
+528913.336322822,179275.877430367,Westminster - Victoria (Victoria BID),WM9,Roadside,kcl
+528954.340731419,178844.88796125,Westminster - Bridge Place,BP0,Urban Background,kcl
+508292.937993615,177798.904519328,Hillingdon - Harlington,LH0,Urban Background,kcl
+515113.556980148,170775.056166086,"- National Physical Laboratory, Teddington",TD0,Suburban,kcl
+525098.402470977,178796.899046522,Kensington and Chelsea - Pembroke Road,WE0,Urban Background,kcl
+540017.823496354,190488.73863491,Redbridge - South Woodford,RB5,Roadside,kcl
+552615.116474586,175416.350022054,Bexley - Thames Road North,BX7,Roadside,kcl
+552566.561949822,175384.62433618,Bexley - Thames Road South,BX8,Roadside,kcl
+516655.503691113,174126.086971691,Richmond Mobile - St. Margarets Grove,RIK,Urban Background,kcl
+516655.503691113,174126.086971691,Richmond Mobile - St. Margarets Grove,RIL,Urban Background,kcl
+528118.313302603,181996.809676258,Marylebone Road - Nitrate,MY8,Kerbside,kcl
+506942.419367419,178607.954739099,Hillingdon - Keats Way,HI0,Suburban,kcl
+529775.967323966,178958.191777595,Westminster - Horseferry Road,WM0,Urban Background,kcl
+540025.257711499,178415.945601713,Entec - Blackwall Lane,EC1,Urban Background,kcl
+511677.580207619,180071.590569398,Ealing - Southall,EA7,Urban Background,kcl
+529995.301466988,180695.839134247,Westminster - Hyde Park Partisol,WM3,Roadside,kcl
+541879.856924525,175016.633804128,Greenwich - Westhorne Avenue,GR9,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Co-located FDMS,FD2,Urban Background,kcl
+524043.37701066,181748.824309853,Kensington and Chelsea - North Ken FDMS,KC7,Urban Background,kcl
+522385.389211332,182803.803881727,Hammersmith and Fulham - Scrubs Lane,HF3,Kerbside,kcl
+520471.44657939,181831.854493442,Ealing - Court Way,EA9,Roadside,kcl
+520304.487980779,180054.648322628,Ealing - Acton Town Hall FDMS,EA0,Roadside,kcl
+524038.377241716,181736.824627292,North Kensington - Partisol SO4,KC9,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road - Partisol SO4,MY9,Kerbside,kcl
+514748.560950123,172247.06020384,Richmond Mobile - Stanley Rd Twickenham,RIO,Roadside,kcl
+514748.560950123,172247.06020384,Richmond Mobile - Stanley Rd Twickenham,RIP,Roadside,kcl
+528118.313302603,181996.809676258,Marylebone Road SMPS,MR2,Kerbside,kcl
+530121.284861271,182010.802141891,Bloomsbury AURN SMPS,BL1,Urban Background,kcl
+548463.107922751,179465.95248781,Bexley - Belvedere West,BQ7,Urban Background,kcl
+531123.932849812,164299.797241001,Croydon - Purley Way,CR2,Roadside,kcl
+526342.601539713,192223.737578511,Barnet - Tally Ho Corner,BN1,Kerbside,kcl
+524370.342349523,189640.749993042,Barnet - Finchley,BN2,Urban Background,kcl
+526679.303078556,190697.653347697,Barnet - Strawberry Vale ,BN3,Urban Background,kcl
+519560.45997558,189271.073210591,Brent - Kingsbury,BT1,Suburban,kcl
+520710.401397332,185160.767733697,Brent - Ikea Car Park,BT2,Roadside,kcl
+521518.404275005,183471.798843021,Brent - Harlesden,BT3,Roadside,kcl
+551862.205260356,176375.976973112,Bexley - Slade Green,BX1,Suburban,kcl
+549978.123066206,179060.949228036,Bexley - Belvedere,BX2,Suburban,kcl
+547323.876107719,181231.236972029,Bexley - Thamesmead,BX3,Suburban,kcl
+548278.136497261,177696.964881819,Bexley - Bedonwell ,BX5,Suburban,kcl
+542408.815006808,159251.745443181,Bromley - Biggin Hill,BY5,Suburban,kcl
+540518.122586231,169324.480344851,Bromley - Harwood Avenue,BY7,Roadside,kcl
+526629.73020263,184391.024215394,Camden - Swiss Cottage,CD1,Kerbside,kcl
+530057.493777488,181285.551899637,Camden - Shaftesbury Avenue,CD3,Roadside,kcl
+539704.942467008,181456.2256424,Newham - Tant Avenue,NM1,Urban Background,kcl
+525590.481793057,168434.934223433,Merton - Morden Civic Centre,ME1,Roadside,kcl
+532336.889281309,168934.742359327,Croydon - Thornton Heath,CR3,Suburban,kcl
+532583.401860369,165636.474186085,Croydon - George Street,CR4,Roadside,kcl
+532235.287913885,180892.086051416,City of London - Senator House,CT1,Urban Background,kcl
+517539.493506232,180734.914296747,Ealing - Ealing Town Hall,EA1,Urban Background,kcl
+520304.487980779,180054.648322628,Ealing - Acton Town Hall,EA2,Roadside,kcl
+531633.240130144,184126.748704709,Islington - Upper Street,IS1,Urban Background,kcl
+530698.299388902,185735.850903031,Islington - Holloway Road,IS2,Roadside,kcl
+524043.37701066,181748.824309853,Kensington and Chelsea - North Ken,KC1,Urban Background,kcl
+526520.170065851,178967.723588671,Kensington and Chelsea - Cromwell Road,KC2,Roadside,kcl
+527514.55594077,179397.095293141,Kensington and Chelsea - Knightsbridge,KC3,Roadside,kcl
+527265.366129985,178088.684334178,Kensington and Chelsea - Kings Road,KC4,Roadside,kcl
+510676.577638383,173245.056338748,Hounslow - Feltham,HS9,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone PM1 FDMS,MR0,Kerbside,kcl
+525698.06791851,178356.903007558,Kensington and Chelsea - Earls Court Rd,KC5,Kerbside,kcl
+517298.382762272,163297.280523815,Kingston - Chessington,KT1,Suburban,kcl
+530628.268186732,173368.24202799,Lambeth - Christchurch Road,LB1,Roadside,kcl
+530273.319359243,177883.905345502,Lambeth - Vauxhall Cross,LB2,Roadside,kcl
+532137.183489631,175701.312608137,Lambeth - Loughborough Junct,LB3,Urban Background,kcl
+537675.4724033,173689.534062099,Lewisham - Catford,LW1,Urban Background,kcl
+536241.364576902,176932.133681405,Lewisham - New Cross,LW2,Roadside,kcl
+528123.313025271,182012.809259818,Marylebone Rd - Traffic,MG1,Kerbside,kcl
+521619.154333132,183554.206661191,Brent - John Keble Primary School,BT6,Roadside,kcl
+509551.63437759,176974.994370916,Hillingdon - Oxford Avenue,HI3,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington - Carbon,KC0,Urban Background,kcl
+528118.313302603,181996.809676258,Marylebone Road - Carbon,MY0,Kerbside,kcl
+528118.313302603,181996.809676258,Marylebone Road - CPC,MR1,Kerbside,kcl
+517958.480831819,172521.099783015,Richmond Mobile - Petersham Rd Ham,RIM,Roadside,kcl
+517958.480831819,172521.099783015,Richmond Mobile - Petersham Rd Ham,RIN,Roadside,kcl
+539683.237779419,170157.092744348,Bromley - Rent Office,BY1,Urban Background,kcl
+540628.266839983,169137.084317115,Bromley - Tweedy Rd,BY4,Roadside,kcl
+530048.315961489,191346.665824142,Haringey - Bounds Green,HG3,Roadside,kcl
+518198.530839978,169747.090252431,Kingston - Town Centre,KT2,Roadside,kcl
+554198.301226715,192096.708158534,Havering - Harold Hill,HV2,Suburban,kcl
+545560.664482079,178526.019339504,Greenwich - Plumstead High Street,GN3,Roadside,kcl
+543580.235144178,172650.017037378,Greenwich - Fiveways Sidcup Rd A20,GN4,Roadside,kcl
+532238.289156304,178557.887231687,Southwark 1 Grim,SK3,Urban Background,kcl
+534618.268256113,177666.924501246,Southwark 2 Grim,SK4,Roadside,kcl
+529808.319954295,179466.870479796,Westminster - Victoria Street,VS1,Kerbside,kcl
+521989.421597738,174564.03573481,Wandsworth - Roehampton,WA3,Rural,kcl
+538998.157164455,186996.774322278,Waltham Forest - Mobile,WL2,Roadside,kcl
+544084.014614762,178881.829235463,Greenwich - A206 Burrage Grove,GN0,Roadside,kcl
+538288.159431854,181448.846448496,Tower Hamlets - Blackwall,TH4,Roadside,kcl
+544098.20292903,176896.979502294,Woolwich Aethalometer,GR3,Urban Background,kcl
+549973.122971708,179060.949239697,Roving 2 PM2.5,TL3,Urban Background,kcl
+533522.24201205,181170.83770757,City of London 7 - NOx paint study site,CT7,Urban Background,kcl
+531325.834580369,186032.156096291,Biomass Partisol - IS6,XP2,Urban Background,kcl
+529992.862757604,180691.143339715,Westminster - Charing Cross Library,WM4,Roadside,kcl
+533480.242663371,181186.8364861,City of London - The Aldgate School,CT3,Urban Background,kcl
+531325.834580369,186032.156096291,Islington - Arsenal,IS6,Urban Background,kcl
+526648.304992625,184456.749065709,Camden - Swiss Cottage Partisol,CD7,Kerbside,kcl
+527712.394163202,171184.096181996,Wandsworth - Tooting,WA6,Roadside,kcl
+529135.328933972,177245.917595514,Wandsworth - Battersea,WAA,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington Aethalometer,NK3,Urban Background,kcl
+509332.534525157,174997.743668843,Hounslow - Hatton Cross,HS7,Urban Background,kcl
+523312.415501314,179896.875127536,Hammersmith and Fulham - Shepherds Bush,HF4,Roadside,kcl
+525806.329627868,170119.12785407,Merton - Merton Road,ME2,Roadside,kcl
+543976.219770718,174651.998666786,Biomass Partisol - GR4,XP1,Urban Background,kcl
+532099.290939404,178828.88162782,Southwark - Heygate,SK7,Urban Background,kcl
+549975.749862346,179064.86264222,Biomass Partisol - Belvedere,XP3,Urban Background,kcl
+529900.870372723,182666.123839195,Camden - Euston Road,CD9,Roadside,kcl
+515471.563834177,168768.093911706,Richmond - Hampton Court Road,RIY,Kerbside,kcl
+536883.249084922,198503.701787064,Enfield - Prince of Wales School,EN7,Urban Background,kcl
+536485.153572803,184234.827779268,Tower Hamlets - Victoria Park,TH5,Urban Background,kcl
+530827.287383518,180848.832434616,Kings Micromet Kings Building,KSK,Urban Background,kcl
+532099.290939404,178828.88162782,Heygate Intel 3,XL3,Urban Background,kcl
+515113.556980148,170775.056166086,Teddington Fidas 2,XD2,Suburban,kcl
+528274.323082029,181061.833348055,Westminster - Oxford Street,WM6,Kerbside,kcl
+524033.406343393,175515.985701629,Wandsworth - Putney,WA9,Urban Background,kcl
+524032.405150937,175369.990353798,Wandsworth - Putney High Street Facade,WA8,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington - PM1 FDMS,NK0,Urban Background,kcl
+525507.398970712,178264.910160058,Kensington and Chelsea - Green Screen RS,KG1,Roadside,kcl
+515353.542542165,173989.076426425,Richmond Upon Thames - Chertsey Road,RHH,Roadside,kcl
+509302.551425313,184498.883565342,Vaisala Road Sensor - Gutteridge Wood,VVG,Kerbside,kcl
+527557.092172841,171630.514254171,Wandsworth - Tooting High Street,WAB,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington PIXE,XK2,Urban Background,kcl
+512435.566075188,173214.03875677,Richmond Upon Thames - Hanworth Road,RHE,Kerbside,kcl
+528123.313025271,182012.809259818,Marylebone Rd Ion Chromatography,WM7,Kerbside,kcl
+539883.023273222,181457.011698218,Newham - Wren Close,NM3,Urban Background,kcl
+529969.25319884,171567.026199193,Lambeth - Streatham Green,LB6,Urban Background,kcl
+515471.563834177,168768.093911706,Richmond - Hampton Court Road,RIZ,Kerbside,kcl
+525646.359741112,174424.996582965,Wandsworth - Garratt Lane,WA1,Roadside,kcl
+528118.313302603,181996.809676258,Marylebone Road APS,MR4,Kerbside,kcl
+524043.37701066,181748.824309853,North Kensington APS,NK5,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road - URG,MR6,Kerbside,kcl
+544452.227534328,187678.858531875,Redbridge - Ley Street,RB7,Urban Background,kcl
+524043.37701066,181748.824309853,North Kensington MET,KM1,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road Increment,MYI,Kerbside,kcl
+524043.37701066,181748.824309853,North Kensington - Modelled,XK0,Urban Background,kcl
+515113.556980148,170775.056166086,Teddington BAM,TD9,Suburban,kcl
+530322.972038015,169553.770467108,Croydon - Norbury Manor,CR8,Urban Background,kcl
+518161.346323545,169663.918989535,Kingston Upon Thames - Sopwith Way,KT3,Roadside,kcl
+519711.889604284,165875.007522669,Kingston Upon Thames - Tolworth Broadway,KT4,Roadside,kcl
+523719.363332251,183004.792073977,Brent - ARK Franklin Primary Academy,BT8,Roadside,kcl
+533517.164704645,179833.758183892,Team London Bridge - Tower Bridge School,TB2,Roadside,kcl
+524043.37701066,181748.824309853,Kensington and Chelsea - North Ken FIDAS,KF1,Urban Background,kcl
+529491.428377444,181330.517514637,Westminster - Oxford Street East,WMB,Roadside,kcl
+538050.17601901,178558.897497757,Tower Hamlets - Millwall Park,TH6,Urban Background,kcl
+528123.313025271,182012.809259818,Marylebone Road - Fidas,MR9,Kerbside,kcl
+533174.537500286,180123.76692396,Team London Bridge - Tooley Street FASQ,FA1,Kerbside,kcl
+530783.287324544,180907.830990227,Westminster - Strand (Northbank BID),NB1,Roadside,kcl
+533174.537500286,180123.76692396,Hammersmith and Fulham - Talgarth Road B,HFY,Roadside,kcl
+527448.32429552,175450.949471687,Wandsworth - Lavender Hill (Clapham Jct),WAC,Roadside,kcl
+532566.283316251,165596.089612109,Croydon - Park Lane,CR9,Roadside,kcl
+528274.323082029,181061.833348055,Westminster - Oxford Street 2,WMZ,Kerbside,kcl
+525591.487040891,168498.382282926,Merton - Morden Civic Centre 2,ME9,Roadside,kcl
+538995.249379724,178002.962320678,Greenwich - Trafalgar Road (Hoskins St),GN5,Roadside,kcl
+529219.29830718,181916.808132562,BT Tower - ClearfLo APS,XT2,Urban Background,kcl
+534842.267611823,177511.932513647,Southwark - A2 Old Kent Road,SK5,Roadside,kcl
+524043.37701066,181748.824309853,North Kensington - URG,NK6,Urban Background,kcl
+529231.171736847,180780.490393043,Regent Street facade (The Crown Estate),CE1,Roadside,kcl
+512435.566075188,173214.03875677,Richmond Upon Thames - Hanworth Road,RHF,Kerbside,kcl
+521232.455794324,179767.89748929,Ealing - Acton Vale ,EI3,Urban Background,kcl
+528707.345681835,178769.890192458,Westminster - Buckingham Palace Road,WMA,Roadside,kcl
+536471.269513729,174125.051935715,Honor Oak Park ACSM,HP5,Urban Background,kcl

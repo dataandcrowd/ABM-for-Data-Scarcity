@@ -6,20 +6,23 @@ globals [gu road lc districtPop districtadminCode %riskpop date where hosp_1564 
          inner_south inner_north inner_ncentre outer_west outer_east
          danger age15 age1564 age65 scenario_counter scenario_date]
 breed [borough-labels borough-label]
-patches-own [is-research-area? is-built-area? name homecode  pm2.5]
+patches-own [is-research-area? is-built-area? name homecode
+  is-monitor-site? monitor-name monitor-code monitor-type pm2.5]
 
 
 ;;--------------------------------
 to setup
  clear-all
+ file-close-all ; Close any files open from last run
  reset-ticks
  set-gis-data
  set-urban-areas
  set-district-division
+ set-monitor-location
  add-labels
  add-admin
 
- add-pollution
+ add-pollution1
 end
 ;;---------------------------------
 to go
@@ -38,6 +41,7 @@ to set-gis-data
   set gu   gis:load-dataset "Data/London_Boundary_cleaned.shp"
   set lc   gis:load-dataset "Data/London_LandCover.shp"
   set road gis:load-dataset "Data/London_Road_Clean.shp"
+
   gis:set-world-envelope (gis:envelope-union-of gis:envelope-of gu)
   ask patches gis:intersecting gu [set is-research-area? true]
 ;;--------------------------------
@@ -106,7 +110,41 @@ to set-district-division
   output-print "set-district-division added"
 end
 
+;;----------------------------
+to set-monitor-location
+
+  let stations gis:load-dataset "Data/London_AP_Stations.shp"
+
+  foreach gis:feature-list-of stations [vector-feature ->
+   ask patches[ if gis:intersects? vector-feature self
+      [ set is-monitor-site? true
+        set monitor-name gis:property-value vector-feature "site"
+        set monitor-code gis:property-value vector-feature "code"
+        set monitor-type gis:property-value vector-feature "site_type"
+        set pcolor red + 2
+        ]
+    ]
+  ]
+
+  ask patches with [is-monitor-site? != true]
+  [set monitor-name false set is-monitor-site? false set monitor-type false set monitor-code false]
+
+end
+
+to add-pollution1
+; Import daily pollution
+  let airqualityfile csv:from-file "Data/London_AQ_tidy.csv"
+  let airqualityfile_headerremoved remove-item 0 airqualityfile
+
+
+
+end
+
+
+
 ;;--------------------------------
+
+
 to add-pollution
 ; Import daily pollution
   let airqualityfile csv:from-file "Data/London_AQ.csv"
