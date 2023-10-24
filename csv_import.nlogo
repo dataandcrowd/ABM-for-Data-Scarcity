@@ -3,9 +3,9 @@ globals [data variable]
 
 to setup
 file-close-all
-file-open "London_AQ_tidy_rd.csv"
+file-open "Data/London_AQ_tidy_rd.csv"
 ;; read the data all at once by using csv:from-file
-set data csv:from-file "London_AQ_tidy_rd.csv"
+set data csv:from-file "Data/London_AQ_tidy_rd.csv"
 reset-ticks
 end
 
@@ -13,7 +13,7 @@ to go
 if file-at-end? [stop]
 ;;extract value from the list, using item 0 to remove the list, and just keep the value
 set variable (list (item 1 item ticks data) (item 2 item ticks data)
-    (item 3 item ticks data) (item 4 item ticks data) (item 5 item ticks data))
+    (item 3 item ticks data) (item 4 item ticks data) (item 5 item ticks data) (item 6 item ticks data))
 tick
 ;if ticks = length data [stop]
 if ticks = 2922 [stop]
