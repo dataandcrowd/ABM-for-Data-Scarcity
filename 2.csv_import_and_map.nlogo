@@ -1,5 +1,5 @@
 extensions [csv gis]
-globals [data gu road lc districtPop districtadminCode no2_list station_list]
+globals [data gu road lc districtPop districtadminCode no2_list station_background]
 breed [borough-labels borough-label]
 patches-own [is-research-area? is-built-area? name homecode
   is-monitor-site? monitor-name monitor-code monitor-type no2]
@@ -8,16 +8,12 @@ patches-own [is-research-area? is-built-area? name homecode
 to setup
   clear-all
   file-close-all
-  file-open "Data/London_AQ_tidy_bg.csv"
-  ;; read the data all at once by using csv:from-file
-  let aqfile csv:from-file "Data/London_AQ_tidy_bg.csv"
-  set data remove-item 0 aqfile
   reset-ticks
   set-gis-data
   set-urban-areas
   add-admin
   set-monitor-location
-
+  set-air-pollution
 
 end
 
@@ -92,13 +88,15 @@ end
 to set-monitor-location
 
   let stations gis:load-dataset "Data/London_AP_Stations.shp"
-  set station_list []
+
 
   foreach gis:feature-list-of stations [vector-feature ->
 
-   set station_list lput (gis:property-value vector-feature "code") station_list
 
-   ask patches[ if gis:intersects? vector-feature self
+   ;;; add elements to stations list
+   ;set station_list lput (gis:property-value vector-feature "code") station_list
+
+   ask patches [ if gis:intersects? vector-feature self
       [ set is-monitor-site? true
         set monitor-name gis:property-value vector-feature "site"
         set monitor-code gis:property-value vector-feature "code"
@@ -108,12 +106,29 @@ to set-monitor-location
         ]
     ]
   ]
-
   ask patches with [is-monitor-site? != true]
   [set monitor-name false set is-monitor-site? false set monitor-type false set monitor-code false]
 
+
+
+  set station_background (list  "BG1" "BG2" "BL0" "BQ7" "BX1" "BX2" "CT3" "CW3" "EI3" "EN1" "EN7" "GR4" "HG4" "HI0"
+ "HP1" "HR1" "IS6" "KC1" "KX8" "LB6" "LH0" "LW1" "LW5" "NM3" "OP1" "OP2" "RB7" "RI2"
+ "SK6" "WA2" "WA9" "WM0" "WM5")
+
+
 end
 
+
+to set-air-pollution
+  ;; read the data all at once by using csv:from-file
+
+  ;let file_name (word "Data/AQ-by-stations/" item 0 station_list ".csv")
+  ;file-open file_name
+
+  ;let aqfile csv:from-file file_name ;"Data/AQ-by-stations/BG1.csv"
+  ;set data remove-item 0 aqfile
+
+end
 
 
 
@@ -237,7 +252,7 @@ OUTPUT
 24
 848
 360
-10
+12
 
 BUTTON
 14
