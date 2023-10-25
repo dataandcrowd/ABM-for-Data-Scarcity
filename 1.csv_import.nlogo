@@ -1,33 +1,43 @@
 extensions [csv]
-globals [data variable]
+globals [data]
 
 to setup
+clear-all
 file-close-all
-file-open "Data/London_AQ_tidy_rd.csv"
+file-open "Data/London_AQ_tidy_bg.csv"
 ;; read the data all at once by using csv:from-file
-set data csv:from-file "Data/London_AQ_tidy_rd.csv"
+let aqfile csv:from-file "Data/London_AQ_tidy_bg.csv"
+set data remove-item 0 aqfile
+
 reset-ticks
 end
 
 to go
 if file-at-end? [stop]
 ;;extract value from the list, using item 0 to remove the list, and just keep the value
-set variable (list (item 1 item ticks data) (item 2 item ticks data)
-    (item 3 item ticks data) (item 4 item ticks data) (item 5 item ticks data) (item 6 item ticks data))
+
+  let entirelist item ticks data
+  let no2 sublist entirelist 5 29
+  set no2 remove -999 no2
+
+  if ticks mod 2 = 0  [output-print (list item 2 entirelist one-of no2)] ;; even tick
+  if ticks mod 2 != 0 [output-print (list item 2 entirelist
+    ((0.7 + random-float 0.3) * one-of no2))] ;; odd tick and applying a discount in NO2
+     ;; to consider people are likely stay indoors where no2 is lower
+
 tick
-;if ticks = length data [stop]
 if ticks = 2922 [stop]
-show variable
+
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-251
-52
+102
+29
+207
+135
 -1
 -1
-1.0
+2.94
 1
 10
 1
@@ -80,6 +90,13 @@ G
 NIL
 NIL
 1
+
+OUTPUT
+96
+22
+763
+309
+10
 
 @#$#@#$#@
 ## WHAT IS IT?

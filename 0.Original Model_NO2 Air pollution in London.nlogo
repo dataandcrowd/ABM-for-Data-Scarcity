@@ -22,7 +22,7 @@ to setup
  add-labels
  add-admin
 
- add-pollution1
+ add-pollution
 end
 ;;---------------------------------
 to go
@@ -128,15 +128,6 @@ to set-monitor-location
 
   ask patches with [is-monitor-site? != true]
   [set monitor-name false set is-monitor-site? false set monitor-type false set monitor-code false]
-
-end
-
-to add-pollution1
-; Import daily pollution
-  let airqualityfile csv:from-file "Data/London_AQ_tidy.csv"
-  let airqualityfile_headerremoved remove-item 0 airqualityfile
-
-output-print "air pollution installed"
 
 end
 
