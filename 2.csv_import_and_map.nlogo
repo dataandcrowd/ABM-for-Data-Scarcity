@@ -1,5 +1,15 @@
-extensions [csv gis]
-globals [data gu road lc districtPop districtadminCode no2_list station_background]
+__includes["csv.nls"]
+
+extensions [csv gis ]
+globals [
+  ;;; Admin
+  gu road lc districtPop districtadminCode station_background
+  ;;; Air Quality
+  aq_BG1 aq_BG2 aq_BL0 aq_BQ7 aq_BX1 aq_BX2 aq_CT3 aq_CW3 aq_EI3 aq_EN1 aq_EN7 aq_GR4 aq_HG4 aq_HI0
+  aq_HP1 aq_HR1 aq_IS6 aq_KC1 aq_KX8 aq_LB6 aq_LH0 aq_LW1 aq_LW5 aq_NM3 aq_OP1 aq_OP2 aq_RB7 aq_RI2
+  aq_SK6 aq_WA2 aq_WA9 aq_WM0 aq_WM5
+
+]
 breed [borough-labels borough-label]
 patches-own [is-research-area? is-built-area? name homecode
   is-monitor-site? monitor-name monitor-code monitor-type no2]
@@ -94,7 +104,6 @@ to set-monitor-location
  "HP1" "HR1" "IS6" "KC1" "KX8" "LB6" "LH0" "LW1" "LW5" "NM3" "OP1" "OP2" "RB7" "RI2"
  "SK6" "WA2" "WA9" "WM0" "WM5")
 
-
   foreach gis:feature-list-of stations [vector-feature ->
     let current_code gis:property-value vector-feature "code"
 
@@ -120,15 +129,6 @@ end
 
 
 
-to set-air-pollution
-  ;; read the data all at once by using csv:from-file
-
-  let file_name (word "Data/AQ-by-stations/" item 0 station_background ".csv")
-  file-open file_name
-  let aqfile csv:from-file file_name ;"Data/AQ-by-stations/BG1.csv"
-  set data remove-item 0 aqfile
-
-end
 
 
 
@@ -141,7 +141,7 @@ to go
 if file-at-end? [stop]
 ;;extract value from the list, using item 0 to remove the list, and just keep the value
 
-  let entirelist item ticks data
+  ;let entirelist item ticks data
   ;set no2_list sublist entirelist 5 29
   ;set no2_list remove -999 no2_list
 
@@ -152,8 +152,8 @@ if file-at-end? [stop]
 
   ;output-print item 3 entirelist
 
-  let HR1 item 3 data
-  output-print item 3 HR1
+  ;let HR1 item 3 data
+  ;output-print item 3 HR1
 
 
 
