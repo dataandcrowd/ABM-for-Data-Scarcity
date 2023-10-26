@@ -3,8 +3,7 @@ to set-air-pollution
     file-open "Data/AQ-by-bg-stations/BG1.csv"
     ;; read the data all at once by using csv:from-file
     let aqfile_bg1_raw csv:from-file "Data/AQ-by-bg-stations/BG1.csv"
-    set aq_BG1 remove-item 0 aqfile_bg1_raw
-    ;output-print aq_BG1
+    set aq_BG1 remove-item 0 aqfile_BG1_raw
     
     file-open "Data/AQ-by-bg-stations/BG2.csv"
     let aqfile_BG2_raw csv:from-file "Data/AQ-by-bg-stations/BG2.csv"
