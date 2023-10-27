@@ -119,15 +119,15 @@ to generate-no2-stations
   let aq_NM3__ remove -999 aq_NM3_
   ask one-of patches with [monitor-code = "NM3"][set no2 aq_NM3__]
   
-  let entirelist_OP1 item ticks aq_OP1
-  let aq_OP1_ sublist entirelist_OP1 5 29
-  let aq_OP1__ remove -999 aq_OP1_
-  ask one-of patches with [monitor-code = "OP1"][set no2 aq_OP1__]
+  ;let entirelist_OP1 item ticks aq_OP1
+  ;let aq_OP1_ sublist entirelist_OP1 5 29
+  ;let aq_OP1__ remove -999 aq_OP1_
+  ;ask one-of patches with [monitor-code = "OP1"][set no2 aq_OP1__]
   
-  let entirelist_OP2 item ticks aq_OP2
-  let aq_OP2_ sublist entirelist_OP2 5 29
-  let aq_OP2__ remove -999 aq_OP2_
-  ask one-of patches with [monitor-code = "OP2"][set no2 aq_OP2__]
+  ;let entirelist_OP2 item ticks aq_OP2
+  ;let aq_OP2_ sublist entirelist_OP2 5 29
+  ;let aq_OP2__ remove -999 aq_OP2_
+  ;ask one-of patches with [monitor-code = "OP2"][set no2 aq_OP2__]
   
   let entirelist_RB7 item ticks aq_RB7
   let aq_RB7_ sublist entirelist_RB7 5 29
@@ -159,9 +159,9 @@ to generate-no2-stations
   let aq_WM0__ remove -999 aq_WM0_
   ask one-of patches with [monitor-code = "WM0"][set no2 aq_WM0__]
   
-  let entirelist_WM5 item ticks aq_WM5
-  let aq_WM5_ sublist entirelist_WM5 5 29
-  let aq_WM5__ remove -999 aq_WM5_
-  ask one-of patches with [monitor-code = "WM5"][set no2 aq_WM5__]
+  ;let entirelist_WM5 item ticks aq_WM5
+  ;let aq_WM5_ sublist entirelist_WM5 5 29
+  ;let aq_WM5__ remove -999 aq_WM5_
+  ;ask one-of patches with [monitor-code = "WM5"][set no2 aq_WM5__]
 
 end

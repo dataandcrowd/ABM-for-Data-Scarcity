@@ -130,5 +130,5 @@ to set-air-pollution
     set aq_WM0 remove-item 0 aqfile_WM0_raw
 
 
-  ask patches [set no2 false]
+  
 end

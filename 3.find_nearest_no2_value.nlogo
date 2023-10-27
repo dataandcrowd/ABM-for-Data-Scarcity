@@ -59,6 +59,7 @@ to set-gis-data
   ask patches with [is-research-area? != true][set is-research-area? false set name false set homecode false]
   ask patches with [is-road? != true][set is-road? false]
 
+  output-print "Road set"
 
   ;; add GIS labels
 
@@ -140,7 +141,6 @@ to generate-no2-patches
 
   ]
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 108

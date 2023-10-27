@@ -66,34 +66,54 @@ LH0 %>%
 write_csv(cleaned_LH0, "../AQ-by-bg-stations/LH0.csv")
 
 #############################################################################
-# cleaned2 %>% 
-#   filter(code == "EI3") %>% 
-#   tail
-# 
-# 
-# cleaned2 %>% 
-#   filter(code == "BG1") %>% 
-#   filter(date > "2022-06-16 10:00:00") %>% 
-#   mutate(site = case_when(site == "Barking and Dagenham - Rush Green" ~ "Ealing - Acton Vale "),
-#          code = case_when(code == "BG1" ~ "EI3"),
-#          no2 = NA) -> temp
-# 
-# cleaned2 %>% 
-#   filter(code == "EI3") %>% 
-#   bind_rows(temp) %>% 
-#   group_by(site, code) %>% 
-#   na_seasplit(algorithm = "mean", find_frequency=TRUE) %>% 
-#   ungroup() %>% 
-#   mutate(site = NA,
-#          site = "Ealing - Acton Vale") -> EI3
-# 
-# EI3 %>% 
-#   select(Date, daynight, code, site, hours, no2) %>% 
-#   mutate(hours = paste0("h", hours)) %>% summary
-#   pivot_wider(names_from = hours, values_from = no2, values_fill = -999) -> cleaned_EI3
-# 
-# 
-# write_csv(EI3, "../AQ-by-bg-stations/EI3.csv")
+cleaned2 %>%
+  filter(code == "GR4") %>%
+  tail
+
+
+cleaned2 %>%
+  filter(code == "BG1") %>%
+  filter(date > "2022-12-26 00:00:00") %>%
+  mutate(site = case_when(site == "Barking and Dagenham - Rush Green" ~ "Greenwich - Eltham"),
+         code = case_when(code == "BG1" ~ "GR4"),
+         no2 = NA) -> temp
+
+cleaned2 %>%
+  filter(code == "GR4") %>%
+  bind_rows(temp) %>%
+  group_by(site, code) %>%
+  na_seasplit(algorithm = "mean", find_frequency=TRUE) %>%
+  ungroup() -> GR4
+
+
+cleaned2 %>%
+  filter(code == "GR4") %>%
+  filter(Date > "2021-12-10" & Date < "2022-01-02") %>% View
+
+
+cleaned2 %>%
+  filter(code == "BG1") %>%
+  filter(date > "2021-12-13 14:00:00" & date < "2022-01-01 00:00:00") %>%
+  mutate(site = case_when(site == "Barking and Dagenham - Rush Green" ~ "Greenwich - Eltham"),
+         code = case_when(code == "BG1" ~ "GR4"),
+         no2 = NA) -> temp
+
+GR4 %>% 
+  bind_rows(temp) %>%
+  group_by(site, code) %>%
+  na_seasplit(algorithm = "mean", find_frequency=TRUE) %>%
+  ungroup() %>% 
+  arrange(date) -> GR4_new
+
+GR4_new %>%
+  select(Date, daynight, code, site, hours, no2) %>%
+  mutate(hours = paste0("h", hours)) %>% 
+  pivot_wider(names_from = hours, values_from = no2, values_fill = -999) %>% 
+  mutate(id = row_number()) %>%
+  select(id, everything()) -> cleaned_GR4
+
+
+write_csv(cleaned_GR4, "../AQ-by-bg-stations/GR4.csv")
 
 #############################################################################
 cleaned2 %>% 
@@ -125,3 +145,34 @@ HG4 %>%
 
 write_csv(HG4, "../AQ-by-bg-stations/HG4.csv")
 
+#############################################################################
+cleaned2 %>% 
+  filter(code == "KC1") %>% 
+  tail
+
+
+cleaned2 %>% 
+  filter(code == "BG1") %>% 
+  filter(date > "2022-12-26 00:00:00") %>% 
+  mutate(site = case_when(site == "Barking and Dagenham - Rush Green" ~ "KC1"),
+         code = case_when(code == "BG1" ~ "KC1"),
+         no2 = NA) -> temp
+
+cleaned2 %>% 
+  filter(code == "KC1") %>% 
+  bind_rows(temp) %>% 
+  group_by(site, code) %>% 
+  na_seasplit(algorithm = "mean", find_frequency=TRUE) %>% 
+  ungroup() -> KC1
+
+
+KC1 %>% 
+  select(Date, daynight, code, site, hours, no2) %>% 
+  mutate(hours = paste0("h", hours)) %>%
+  pivot_wider(names_from = hours, values_from = no2, values_fill = -999) %>% 
+  mutate(id = row_number()) %>%
+  select(id, everything()) -> cleaned_KC1
+
+
+
+write_csv(cleaned_KC1, "../AQ-by-bg-stations/KC1.csv")
