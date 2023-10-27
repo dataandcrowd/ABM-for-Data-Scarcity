@@ -118,9 +118,10 @@ cleaned_background_with_id %>%
   ungroup() -> counter2
 
 
-cleaned_background_with_id %>% 
-  inner_join(counter2, by = "code") %>% 
-  write_csv("London_AQ_tidy_bg.csv")
+#Activate only when needed 
+# cleaned_background_with_id %>% 
+#   inner_join(counter2, by = "code") %>% 
+#   write_csv("London_AQ_tidy_bg.csv")
 
 
 ldn_sf %>% 
@@ -152,6 +153,6 @@ cleaned_road_with_id %>%
 
 
 
-cleaned_wider_with_id %>% 
-  inner_join(counter3, by = "code") %>% 
-  write_csv("London_AQ_tidy_rd.csv")
+# cleaned_wider_with_id %>% 
+#   inner_join(counter3, by = "code") %>% 
+#   write_csv("London_AQ_tidy_rd.csv")
