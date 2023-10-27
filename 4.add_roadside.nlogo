@@ -157,7 +157,7 @@ end
 to set-nearest-station
   ask patches with [
     is-research-area? = true and
-    is-road? = false and
+    ;is-road? = false and
     is-monitor-site? = false and
     monitor-code = false and
     monitor-name = false ][
@@ -167,18 +167,18 @@ to set-nearest-station
     ] [distance myself]
   ]
 
-  ask patches with [
-    is-research-area? = true and
-    is-monitor-site? = false and
-    monitor-code = false and
-    monitor-name = false and
-    is-road? = true
-  ][
-    set nearest_station min-one-of patches with [
-      is-monitor-site? = true and
-      (monitor-type = "Roadside" or monitor-type = "Kerbside")
-    ] [distance myself]
-  ]
+;  ask patches with [
+;    is-research-area? = true and
+;    is-road? = true and
+;    is-monitor-site? = false and
+;    monitor-code = false and
+;    monitor-name = false
+;  ][
+;    set nearest_station min-one-of patches with [
+;      is-monitor-site? = true and
+;      (monitor-type = "Roadside" or monitor-type = "Kerbside")
+;    ] [distance myself]
+;  ]
 
 
 end
@@ -190,7 +190,7 @@ end
 
 to go
   generate-no2-background
-  generate-no2-road
+  ;generate-no2-road
   generate-no2-patches
 
   tick

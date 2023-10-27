@@ -200,35 +200,35 @@ let rd_MY1_ sublist entirelist_MY1 5 29
 let rd_MY1__ remove -999 rd_MY1_
 ask one-of patches with [monitor-code = "MY1"][set no2 rd_MY1__]
 
-;let entirelist_NB1 item ticks rd_NB1
-;let rd_NB1_ sublist entirelist_NB1 5 29
-;let rd_NB1__ remove -999 rd_NB1_
-;ask one-of patches with [monitor-code = "NB1"][set no2 rd_NB1__]
+let entirelist_NB1 item ticks rd_NB1
+let rd_NB1_ sublist entirelist_NB1 5 29
+let rd_NB1__ remove -999 rd_NB1_
+ask one-of patches with [monitor-code = "NB1"][set no2 rd_NB1__]
 
-;let entirelist_NM2 item ticks rd_NM2
-;let rd_NM2_ sublist entirelist_NM2 5 29
-;let rd_NM2__ remove -999 rd_NM2_
-;ask one-of patches with [monitor-code = "NM2"][set no2 rd_NM2__]
+let entirelist_NM2 item ticks rd_NM2
+let rd_NM2_ sublist entirelist_NM2 5 29
+let rd_NM2__ remove -999 rd_NM2_
+ask one-of patches with [monitor-code = "NM2"][set no2 rd_NM2__]
 
 let entirelist_RB4 item ticks rd_RB4
 let rd_RB4_ sublist entirelist_RB4 5 29
 let rd_RB4__ remove -999 rd_RB4_
 ask one-of patches with [monitor-code = "RB4"][set no2 rd_RB4__]
 
-;let entirelist_RI1 item ticks rd_RI1
-;let rd_RI1_ sublist entirelist_RI1 5 29
-;let rd_RI1__ remove -999 rd_RI1_
-;ask one-of patches with [monitor-code = "RI1"][set no2 rd_RI1__]
+let entirelist_RI1 item ticks rd_RI1
+let rd_RI1_ sublist entirelist_RI1 5 29
+let rd_RI1__ remove -999 rd_RI1_
+ask one-of patches with [monitor-code = "RI1"][set no2 rd_RI1__]
 
 ;let entirelist_SK5 item ticks rd_SK5
 ;let rd_SK5_ sublist entirelist_SK5 5 29
 ;let rd_SK5__ remove -999 rd_SK5_
 ;ask one-of patches with [monitor-code = "SK5"][set no2 rd_SK5__]
 
-;let entirelist_SK8 item ticks rd_SK8
-;let rd_SK8_ sublist entirelist_SK8 5 29
-;let rd_SK8__ remove -999 rd_SK8_
-;ask one-of patches with [monitor-code = "SK8"][set no2 rd_SK8__]
+let entirelist_SK8 item ticks rd_SK8
+let rd_SK8_ sublist entirelist_SK8 5 29
+let rd_SK8__ remove -999 rd_SK8_
+ask one-of patches with [monitor-code = "SK8"][set no2 rd_SK8__]
 
 ;let entirelist_SKA item ticks rd_SKA
 ;let rd_SKA_ sublist entirelist_SKA 5 29
@@ -250,10 +250,10 @@ ask one-of patches with [monitor-code = "RB4"][set no2 rd_RB4__]
 ;let rd_ST9__ remove -999 rd_ST9_
 ;ask one-of patches with [monitor-code = "ST9"][set no2 rd_ST9__]
 
-let entirelist_TH2 item ticks rd_TH2
-let rd_TH2_ sublist entirelist_TH2 5 29
-let rd_TH2__ remove -999 rd_TH2_
-ask one-of patches with [monitor-code = "TH2"][set no2 rd_TH2__]
+;let entirelist_TH2 item ticks rd_TH2
+;let rd_TH2_ sublist entirelist_TH2 5 29
+;let rd_TH2__ remove -999 rd_TH2_
+;ask one-of patches with [monitor-code = "TH2"][set no2 rd_TH2__]
 
 ;let entirelist_TH4 item ticks rd_TH4
 ;let rd_TH4_ sublist entirelist_TH4 5 29
