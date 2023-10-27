@@ -12,7 +12,7 @@ globals [
 ]
 breed [borough-labels borough-label]
 patches-own [is-research-area? is-road? name homecode
-  is-monitor-site? monitor-name monitor-code monitor-type no2]
+  is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2 ]
 
 
 to setup
@@ -24,6 +24,7 @@ to setup
   add-admin
   set-monitor-location
   set-air-pollution ;; in a separate source file
+  set-nearest-station
 
 end
 
@@ -118,13 +119,27 @@ end
 
 
 
+to set-nearest-station
+  ask patches with [
+    is-research-area? = true and
+    is-monitor-site? = false and
+    monitor-code = false and
+    monitor-name = false ][
+    set nearest_station min-one-of patches with [is-monitor-site? = true] [distance myself]
+
+
+  ]
+
+end
+
+
 ;;;;;;;;;;;;
 ;; --go-- ;;
 ;;;;;;;;;;;;
 
 to go
   generate-no2-stations
-  ;generate-no2-patches
+  generate-no2-patches
 
 
   tick
@@ -134,11 +149,20 @@ end
 
 
 to generate-no2-patches
-  ask patches with [is-research-area? = true and is-monitor-site? = false]
-  [ set no2 [no2] of min-one-of patches with [is-monitor-site? = true] [distance myself]
-
-
-
+  ask patches [
+    if is-research-area? = true and
+       is-monitor-site? = false and
+       monitor-code = false and
+       monitor-name = false and
+       nearest_station != 0
+    [
+      let no2_value [no2] of nearest_station
+      ifelse (is-list? no2_value) [
+        set no2 (one-of no2_value)
+      ]  [
+        set no2 no2_value
+      ]
+    ]
   ]
 end
 @#$#@#$#@
