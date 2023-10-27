@@ -6,8 +6,8 @@ globals [
   gu road lc districtPop districtadminCode station_background
   ;;; Air Quality
   aq_BG1 aq_BG2 aq_BL0 aq_BQ7 aq_BX1 aq_BX2 aq_CT3 aq_EN1 aq_EN7 aq_GR4 aq_HG4 aq_HI0
-  aq_HR1 aq_IS6 aq_KC1 aq_LB6 aq_LH0 aq_LW1 aq_LW5 aq_NM3 aq_OP1 aq_OP2 aq_RB7 aq_RI2
-  aq_SK6 aq_WA2 aq_WA9 aq_WM0 aq_WM5
+  aq_HR1 aq_IS6 aq_KC1 aq_LB6 aq_LH0 aq_LW1 aq_LW5 aq_NM3 aq_RB7 aq_RI2
+  aq_SK6 aq_WA2 aq_WA9 aq_WM0
 
 ]
 breed [borough-labels borough-label]
@@ -93,8 +93,7 @@ to set-monitor-location
   let stations gis:load-dataset "Data/London_AP_Stations.shp"
 
   set station_background (list  "BG1" "BG2" "BL0" "BQ7" "BX1" "BX2" "CT3" "EN1" "EN7" "GR4" "HG4" "HI0"
- "HR1" "IS6" "KC1" "LB6" "LH0" "LW1" "LW5" "NM3" "OP1" "OP2" "RB7" "RI2"
- "SK6" "WA2" "WA9" "WM0" "WM5")
+ "HR1" "IS6" "KC1" "LB6" "LH0" "LW1" "LW5" "NM3"  "RB7" "RI2" "SK6" "WA2" "WA9" "WM0" )
 
   foreach gis:feature-list-of stations [vector-feature ->
     let current_code gis:property-value vector-feature "code"
@@ -141,7 +140,7 @@ to go
   generate-no2-stations
   generate-no2-patches
 
-
+;ask patches [ set pcolor scale-color red no2 0 50 ]
   tick
   if ticks = 2921 [stop]
 
@@ -157,13 +156,14 @@ to generate-no2-patches
        nearest_station != 0
     [
       let no2_value [no2] of nearest_station
-      ifelse (is-list? no2_value) [
+      if (is-list? no2_value) [
         set no2 (one-of no2_value)
-      ]  [
-        set no2 no2_value
+        set pcolor scale-color pink no2 0 50
       ]
     ]
   ]
+
+
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
