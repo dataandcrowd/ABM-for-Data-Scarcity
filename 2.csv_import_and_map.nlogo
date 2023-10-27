@@ -132,7 +132,7 @@ end
 to go
   generate-no2
   tick
-  if ticks = 2922 [stop]
+  if ticks = 2921 [stop]
 
 end
 
@@ -140,8 +140,6 @@ end
 
 
 to generate-no2
-  if file-at-end? [stop]
-
   let entirelist_BG1 item ticks aq_BG1
   let aq_BG1_ sublist entirelist_BG1 5 29
   let aq_BG1__ remove -999 aq_BG1_
@@ -177,15 +175,15 @@ to generate-no2
   let aq_CT3__ remove -999 aq_CT3_
   ask one-of patches with [monitor-code = "CT3"][set no2 aq_CT3__]
 
-  let entirelist_CW3 item ticks aq_CW3
-  let aq_CW3_ sublist entirelist_CW3 5 29
-  let aq_CW3__ remove -999 aq_CW3_
-  ask one-of patches with [monitor-code = "CW3"][set no2 aq_CW3__]
+  ;let entirelist_CW3 item ticks aq_CW3
+  ;let aq_CW3_ sublist entirelist_CW3 5 29
+  ;let aq_CW3__ remove -999 aq_CW3_
+  ;ask one-of patches with [monitor-code = "CW3"][set no2 aq_CW3__]
 
-  let entirelist_EI3 item ticks aq_EI3
-  let aq_EI3_ sublist entirelist_EI3 5 29
-  let aq_EI3__ remove -999 aq_EI3_
-  ask one-of patches with [monitor-code = "EI3"][set no2 aq_EI3__]
+  ;let entirelist_EI3 item ticks aq_EI3
+  ;let aq_EI3_ sublist entirelist_EI3 5 29
+  ;let aq_EI3__ remove -999 aq_EI3_
+  ;ask one-of patches with [monitor-code = "EI3"][set no2 aq_EI3__]
 
   let entirelist_EN1 item ticks aq_EN1
   let aq_EN1_ sublist entirelist_EN1 5 29
@@ -197,15 +195,15 @@ to generate-no2
   let aq_EN7__ remove -999 aq_EN7_
   ask one-of patches with [monitor-code = "EN7"][set no2 aq_EN7__]
 
-  let entirelist_GR4 item ticks aq_GR4
-  let aq_GR4_ sublist entirelist_GR4 5 29
-  let aq_GR4__ remove -999 aq_GR4_
-  ask one-of patches with [monitor-code = "GR4"][set no2 aq_GR4__]
+  ;let entirelist_GR4 item ticks aq_GR4
+  ;let aq_GR4_ sublist entirelist_GR4 5 29
+  ;let aq_GR4__ remove -999 aq_GR4_
+  ;ask one-of patches with [monitor-code = "GR4"][set no2 aq_GR4__]
 
-  let entirelist_HG4 item ticks aq_HG4
-  let aq_HG4_ sublist entirelist_HG4 5 29
-  let aq_HG4__ remove -999 aq_HG4_
-  ask one-of patches with [monitor-code = "HG4"][set no2 aq_HG4__]
+  ;let entirelist_HG4 item ticks aq_HG4
+  ;let aq_HG4_ sublist entirelist_HG4 5 29
+  ;let aq_HG4__ remove -999 aq_HG4_
+  ;ask one-of patches with [monitor-code = "HG4"][set no2 aq_HG4__]
 
   let entirelist_HI0 item ticks aq_HI0
   let aq_HI0_ sublist entirelist_HI0 5 29
@@ -227,30 +225,30 @@ to generate-no2
   let aq_IS6__ remove -999 aq_IS6_
   ask one-of patches with [monitor-code = "IS6"][set no2 aq_IS6__]
 
-  let entirelist_KC1 item ticks aq_KC1
-  let aq_KC1_ sublist entirelist_KC1 5 29
-  let aq_KC1__ remove -999 aq_KC1_
-  ask one-of patches with [monitor-code = "KC1"][set no2 aq_KC1__]
+  ;let entirelist_KC1 item ticks aq_KC1
+  ;let aq_KC1_ sublist entirelist_KC1 5 29
+  ;let aq_KC1__ remove -999 aq_KC1_
+  ;ask one-of patches with [monitor-code = "KC1"][set no2 aq_KC1__]
 
-  let entirelist_KX8 item ticks aq_KX8
-  let aq_KX8_ sublist entirelist_KX8 5 29
-  let aq_KX8__ remove -999 aq_KX8_
-  ask one-of patches with [monitor-code = "KX8"][set no2 aq_KX8__]
+  ;let entirelist_KX8 item ticks aq_KX8
+  ;let aq_KX8_ sublist entirelist_KX8 5 29
+  ;let aq_KX8__ remove -999 aq_KX8_
+  ;ask one-of patches with [monitor-code = "KX8"][set no2 aq_KX8__]
 
   let entirelist_LB6 item ticks aq_LB6
   let aq_LB6_ sublist entirelist_LB6 5 29
   let aq_LB6__ remove -999 aq_LB6_
   ask one-of patches with [monitor-code = "LB6"][set no2 aq_LB6__]
 
-  let entirelist_LH0 item ticks aq_LH0
-  let aq_LH0_ sublist entirelist_LH0 5 29
-  let aq_LH0__ remove -999 aq_LH0_
-  ask one-of patches with [monitor-code = "LH0"][set no2 aq_LH0__]
+  ;let entirelist_LH0 item ticks aq_LH0
+  ;let aq_LH0_ sublist entirelist_LH0 5 29
+  ;let aq_LH0__ remove -999 aq_LH0_
+  ;ask one-of patches with [monitor-code = "LH0"][set no2 aq_LH0__]
 
-  let entirelist_LW1 item ticks aq_LW1
-  let aq_LW1_ sublist entirelist_LW1 5 29
-  let aq_LW1__ remove -999 aq_LW1_
-  ask one-of patches with [monitor-code = "LW1"][set no2 aq_LW1__]
+  ;let entirelist_LW1 item ticks aq_LW1
+  ;let aq_LW1_ sublist entirelist_LW1 5 29
+  ;let aq_LW1__ remove -999 aq_LW1_
+  ;ask one-of patches with [monitor-code = "LW1"][set no2 aq_LW1__]
 
   let entirelist_LW5 item ticks aq_LW5
   let aq_LW5_ sublist entirelist_LW5 5 29
