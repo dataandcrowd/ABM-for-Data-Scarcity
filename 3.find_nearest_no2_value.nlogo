@@ -1,4 +1,4 @@
-__includes["csv.nls" "csv1.nls"]
+__includes["csv_import_NO2background.nls" "csv_run_NO2background.nls"]
 
 extensions [csv gis ]
 globals [
@@ -23,7 +23,7 @@ to setup
 
   add-admin
   set-monitor-location
-  set-air-pollution ;; in a separate source file
+  set-air-pollution-background ;; in a separate source file
   set-nearest-station
 
 end
@@ -137,7 +137,7 @@ end
 ;;;;;;;;;;;;
 
 to go
-  generate-no2-stations
+  generate-no2-background
   generate-no2-patches
 
 ;ask patches [ set pcolor scale-color red no2 0 50 ]
