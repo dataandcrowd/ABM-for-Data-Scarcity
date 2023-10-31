@@ -99,7 +99,14 @@ for (i in 1:length(background_stations)){
                             xlab = "Time Lapse - Interval Size: Approx 3 months",
                             color_missing = "gold3")
   
-  ggsave(filename = paste0("NA_Distribution/", background_stations[i], ".jpg"), width = 4.5, height = 4)
+  # Define the filename
+  file_name <- paste0("NA_Distribution/", background_stations[i], ".jpg")
+  
+  # Check if the file exists
+  if (!file.exists(file_name)){
+    ggsave(filename = file_name, width = 4.5, height = 4)
+  }
+  
 }
 
 
