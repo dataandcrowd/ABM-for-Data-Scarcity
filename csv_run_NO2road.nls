@@ -1,4 +1,4 @@
-to generate-no2-road-not-in-use
+to generate-no2-road
 
 let entirelist_BT4 item ticks rd_BT4
 let rd_BT4_ sublist entirelist_BT4 5 29
@@ -290,20 +290,24 @@ ask one-of patches with [monitor-code = "SK8"][set no2 rd_SK8__]
 ;let rd_WAB__ remove -999 rd_WAB_
 ;ask one-of patches with [monitor-code = "WAB"][set no2 rd_WAB__]
 
-;let entirelist_WAC item ticks rd_WAC
-;let rd_WAC_ sublist entirelist_WAC 5 29
-;let rd_WAC__ remove -999 rd_WAC_
-;ask one-of patches with [monitor-code = "WAC"][set no2 rd_WAC__]
+let entirelist_WAC item ticks rd_WAC
+let rd_WAC_ sublist entirelist_WAC 5 29
+let rd_WAC__ remove -999 rd_WAC_
+let mean_rd_WAC__ mean rd_WAC__ 
+ask one-of patches with [monitor-code = "WAC"][set no2 mean_rd_WAC__]
+
 
 let entirelist_WM6 item ticks rd_WM6
 let rd_WM6_ sublist entirelist_WM6 5 29
 let rd_WM6__ remove -999 rd_WM6_
-ask one-of patches with [monitor-code = "WM6"][set no2 rd_WM6__]
+let mean_rd_WA6__ mean rd_WM6__ 
+ask one-of patches with [monitor-code = "WM6"][set no2 mean_rd_WA6__]
 
 let entirelist_WMB item ticks rd_WMB
 let rd_WMB_ sublist entirelist_WMB 5 29
 let rd_WMB__ remove -999 rd_WMB_
-ask one-of patches with [monitor-code = "WMB"][set no2 rd_WMB__]
+let mean_rd_WMB__ mean rd_WMB__
+ask one-of patches with [monitor-code = "WMB"][set no2 mean_rd_WMB__]
 
 let entirelist_WMC item ticks rd_WMC
 let rd_WMC_ sublist entirelist_WMC 5 29

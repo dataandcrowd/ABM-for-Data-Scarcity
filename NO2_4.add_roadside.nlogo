@@ -191,8 +191,9 @@ end
 to go
   generate-no2-background
   generate-no2-patches
+  generate-no2-road
   generate-no2-road1
-  export-no2
+  ;export-no2
 
   tick
   if ticks = 2921 [stop]
@@ -223,13 +224,12 @@ to generate-no2-road1
       set no2 ((no2 * (2 + random-float 1)))
     ]
   ]
-
 end
 
 
 to export-no2
   ; Create a file name with a timestamp
-  let file-name (word "no2_export" random 100 ".csv")
+  let file-name "no2_export.csv"
 
   ; Open a new file
   file-open file-name
@@ -239,7 +239,7 @@ to export-no2
   file-print ""  ; Move to the next line
 
   ; Loop through each patch in the research area and write data
-  ask patches with [is-road? = true and is-research-area? = true] [
+  ask patches with [is-road? = true and is-monitor-site? = true and monitor-type = "Roadside"] [
     file-print (word ticks ", " pxcor ", " pycor ", " no2)
   ]
 
@@ -678,6 +678,13 @@ NetLogo 6.3.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <final>export-no2</final>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
