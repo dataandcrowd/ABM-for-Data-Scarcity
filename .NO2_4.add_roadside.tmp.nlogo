@@ -229,7 +229,8 @@ end
 
 to export-no2
   ; Create a file name with a timestamp
-  let file-name (word "no2_export" random 100 ".csv")
+  let file-name "no2_export
+.csv"
 
   ; Open a new file
   file-open file-name

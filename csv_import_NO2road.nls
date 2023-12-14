@@ -1,5 +1,5 @@
 to set-air-pollution-road
-    file-open "Data/AQ-by-rd-stations/BT4.csv"
+file-open "Data/AQ-by-rd-stations/BT4.csv"
 let aqfile_BT4_raw csv:from-file "Data/AQ-by-rd-stations/BT4.csv"
 set rd_BT4 remove-item 0 aqfile_BT4_raw
 
