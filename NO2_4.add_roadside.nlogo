@@ -193,7 +193,7 @@ to go
   generate-no2-patches
   generate-no2-road
   generate-no2-road1
-  ;export-no2
+  export-no2
 
   tick
   if ticks = 2921 [stop]
@@ -211,7 +211,7 @@ to generate-no2-patches
     [
       let no2_value [no2] of nearest_station
       if (is-list? no2_value) [
-        set no2 (one-of no2_value)
+        set no2 round (one-of no2_value)
         set pcolor scale-color pink no2 0 50
       ]
     ]
@@ -221,26 +221,30 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 ((no2 * (2 + random-float 1)))
+      set no2 (round (no2 * (2 + random-float 1)))
     ]
   ]
 end
 
 
 to export-no2
-  ; Create a file name with a timestamp
   let file-name "no2_export.csv"
 
-  ; Open a new file
+  ; Check if the file exists. If not, create it and write the header
+  if not file-exists? file-name [
+    file-open file-name
+    file-write "tick, patch-x, patch-y, is_monitor_site, monitor_type, no2"
+    file-print ""  ; Move to the next line
+    file-close
+  ]
+
+    ; Append data to the file
   file-open file-name
 
-  ; Write a header to the file
-  file-write "tick, patch-x, patch-y, no2"
-  file-print ""  ; Move to the next line
 
   ; Loop through each patch in the research area and write data
-  ask patches with [is-road? = true and is-monitor-site? = true and monitor-type = "Roadside"] [
-    file-print (word ticks ", " pxcor ", " pycor ", " no2)
+  ask patches with [is-research-area? = true] [
+    file-print (word ticks ", " pxcor ", " pycor ", " is-monitor-site? ", " monitor-type ", " no2)
   ]
 
   ; Close the file
@@ -682,7 +686,6 @@ NetLogo 6.3.0
   <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <final>export-no2</final>
   </experiment>
 </experiments>
 @#$#@#$#@
