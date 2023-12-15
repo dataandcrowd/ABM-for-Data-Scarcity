@@ -241,15 +241,58 @@ to export-no2
     ; Append data to the file
   file-open file-name
 
+  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WM6" "WMB"]
 
   ; Loop through each patch in the research area and write data
-  ask patches with [is-research-area? = true] [
+  ask patches with [is-research-area? = true and monitor-type = list_roadstation] [
     file-print (word ticks ", " pxcor ", " pycor ", " is-monitor-site? ", " monitor-type ", " no2)
   ]
 
   ; Close the file
   file-close
 end
+
+
+to test
+  ; First, find the patch with monitor-code "BT4"
+  let target-patch one-of patches with [monitor-code = "BT4"]
+
+  ; Check if such a patch exists
+  if target-patch != nobody [
+    ; Ask the target patch to find patches in its radius
+    ask target-patch [
+      let nearby-patches patches in-radius 3
+
+      ; Choose a random patch from the nearby patches
+      let random-patch one-of nearby-patches with [is-monitor-site? = false]
+
+      ; Do something with the random patch
+      output-print random-patch  ; Replace this with the action you want to perform
+    ]
+  ]
+end
+
+to test1
+  let target-patch one-of patches with [monitor-code = "BT4"]
+
+  if target-patch != nobody [
+    ; Ask the target patch to identify a fixed patch relative to its position
+    ask target-patch [
+      let fixed-patch patch-at 2 1  ; Assuming the fixed patch is 2 east, 1 north from target-patch
+
+      ; Check if the fixed patch exists and is within the desired radius
+      if fixed-patch != nobody and distance fixed-patch <= 3 [
+        ; Do something with the fixed patch
+        print fixed-patch  ; Replace this with your desired action
+      ]
+    ]
+  ]
+end
+
+
+
+
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 108
