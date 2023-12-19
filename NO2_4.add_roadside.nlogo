@@ -229,11 +229,12 @@ end
 
 to export-no2
   let file-name "no2_export.csv"
+  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WM6" "WMB"]
 
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name [
     file-open file-name
-    file-write "tick, patch-x, patch-y, is_monitor_site, monitor_type, no2"
+    file-write "tick, patch-x, patch-y, monitor_type, monitor_code, no2"
     file-print ""  ; Move to the next line
     file-close
   ]
@@ -241,13 +242,13 @@ to export-no2
     ; Append data to the file
   file-open file-name
 
-  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WM6" "WMB"]
 
-  ; Loop through each patch in the research area and write data
-  ask patches with [is-research-area? = true and monitor-type = list_roadstation] [
-    file-print (word ticks ", " pxcor ", " pycor ", " is-monitor-site? ", " monitor-type ", " no2)
+  ; Loop through each patch in the research area and check if monitor-type is in the list
+  ask patches with [is-research-area?] [
+    if member? monitor-code list_roadstation [
+      file-print (word ticks ", " pxcor ", " pycor ", " monitor-type ", " monitor-code ", " no2)
+    ]
   ]
-
   ; Close the file
   file-close
 end
@@ -288,7 +289,6 @@ to test1
     ]
   ]
 end
-
 
 
 
@@ -721,7 +721,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.3.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
