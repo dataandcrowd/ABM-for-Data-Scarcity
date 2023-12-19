@@ -265,13 +265,13 @@ to export-data
 
   foreach list_roadstation [
     code ->
-    test1 code
+    roadside code
   ]
 
   file-close
 end
 
-to test1 [code]
+to roadside [code]
   let target-patch one-of patches with [monitor-code = code]
 
   if target-patch != nobody [
@@ -279,12 +279,12 @@ to test1 [code]
       let fixed-patch patch-at 2 1
       if fixed-patch != nobody and distance fixed-patch <= 3 [
         let no2-data [no2] of fixed-patch  ; Retrieve the NO2 data from the fixed patch
-        file-print (word ticks ", " [monitor-code] of target-patch ", " ([pxcor] of fixed-patch) ", " ([pycor] of fixed-patch) ", " no2)
+        file-print (word ticks ", " [monitor-code] of target-patch ", "
+          ([pxcor] of fixed-patch) ", " ([pycor] of fixed-patch) ", " no2)
       ]
     ]
   ]
 end
-
 
 
 
