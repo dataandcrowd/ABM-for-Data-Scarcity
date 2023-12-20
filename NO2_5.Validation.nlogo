@@ -1,10 +1,12 @@
 __includes["csv_import_NO2background.nls" "csv_run_NO2background.nls"
   "csv_import_NO2road.nls" "csv_run_NO2road.nls"]
 
-extensions [csv gis ]
+extensions [csv gis]
 globals [
   ;;; Admin
   gu road lc districtPop districtadminCode station_background station_road
+
+  iteration-count
 
   ;;; Air Quality (Background)
   aq_BG1 aq_BG2 aq_BL0 aq_BQ7 aq_BX1 aq_BX2 aq_CT3 aq_EN1 aq_EN7 aq_GR4 aq_HG4 aq_HI0 aq_HR1 aq_IS6 aq_KC1
@@ -35,6 +37,8 @@ to setup
   set-air-pollution-background ;; in a separate source file
   set-air-pollution-road ;; in a separate source file
   set-nearest-station
+
+  set iteration-count 0
 
 end
 
@@ -194,7 +198,9 @@ to go
   generate-no2-road
   generate-no2-road1
   export-no2
-  export-data
+  export-shifted-no2
+
+  set iteration-count iteration-count + 1
 
   tick
   if ticks = 2921 [stop]
@@ -235,7 +241,7 @@ to export-no2
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name [
     file-open file-name
-    file-write "tick, patch-x, patch-y, monitor_type, monitor_code, no2"
+    file-write "iteration-count, tick, patch-x, patch-y, monitor_type, monitor_code, no2"
     file-print ""  ; Move to the next line
     file-close
   ]
@@ -247,7 +253,7 @@ to export-no2
   ; Loop through each patch in the research area and check if monitor-type is in the list
   ask patches with [is-research-area?] [
     if member? monitor-code list_roadstation [
-      file-print (word ticks ", " pxcor ", " pycor ", " monitor-type ", " monitor-code ", " no2)
+      file-print (word iteration-count ", " ticks ", " pxcor ", " pycor ", " monitor-type ", " monitor-code ", " no2)
     ]
   ]
   ; Close the file
@@ -255,39 +261,38 @@ to export-no2
 end
 
 
-to export-data
+to export-shifted-no2
+  let file-name-shifted "no2_patch_neighbours.csv"
   let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WM6" "WMB"]
 
-  file-open "output.csv"
-  file-write "tick, Monitor-Code, X, Y, no2"  ; Replace 'Other-Data' with relevant column headers
-  file-print ""  ; Move to the next line
 
-
-  foreach list_roadstation [
-    code ->
-    roadside code
+  ; Check if the file exists. If not, create it and write the header
+  if not file-exists? file-name-shifted [
+    file-open file-name-shifted
+    file-write "iteration-count, tick, patch-x, patch-y, monitor_type, monitor_code, no2"
+    file-print ""  ; Move to the next line
+    file-close
   ]
 
-  file-close
-end
 
-to roadside [code]
-  let target-patch one-of patches with [monitor-code = code]
+  ; Append data to the shifted file
+  file-open file-name-shifted
 
-  if target-patch != nobody [
-    ask target-patch [
-      let fixed-patch patch-at 2 1
-      if fixed-patch != nobody and distance fixed-patch <= 3 [
-        let no2-data [no2] of fixed-patch  ; Retrieve the NO2 data from the fixed patch
-        file-print (word ticks ", " [monitor-code] of target-patch ", "
-          ([pxcor] of fixed-patch) ", " ([pycor] of fixed-patch) ", " no2)
+  ; Loop through each patch in the research area and check if monitor-type is in the list
+  ask patches with [is-research-area?] [
+    if member? monitor-code list_roadstation [
+      let shifted-x pxcor + 2  ; Shift 2 steps to the east
+      let shifted-y pycor - 1  ; Shift 1 step to the south
+
+      ; Ensure that the shifted coordinates are within the world's boundaries
+      if (shifted-x < max-pxcor) and (shifted-y > min-pycor) [
+        file-print (word iteration-count ", " ticks ", " shifted-x ", " shifted-y ", " monitor-type ", " monitor-code ", " no2)
       ]
     ]
   ]
+  ; Close the file
+  file-close
 end
-
-
-
 
 
 @#$#@#$#@
@@ -723,9 +728,10 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
+  <experiment name="experiment" repetitions="30" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
+    <metric>iteration-count</metric>
   </experiment>
 </experiments>
 @#$#@#$#@
