@@ -1,5 +1,6 @@
 __includes["csv_import_NO2background.nls" "csv_run_NO2background.nls"
-  "csv_import_NO2road.nls" "csv_run_NO2road.nls"]
+  "csv_import_NO2road.nls" "csv_run_NO2road.nls"
+]
 
 extensions [csv gis]
 globals [
@@ -198,7 +199,6 @@ to go
   generate-no2-road
   generate-no2-road1
   export-no2
-  export-shifted-no2
 
   set iteration-count iteration-count + 1
 
@@ -228,15 +228,17 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (round (no2 * (2 + random-float 1)))
+      set no2 (round (no2 * (1 + random-float .3)))
     ]
   ]
+
+  ;ask one-of patches with [monitor-code = "BT4"][output-print no2]
 end
 
 
 to export-no2
   let file-name "no2_export.csv"
-  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WM6" "WMB"]
+  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WMB"]
 
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name [
@@ -260,39 +262,6 @@ to export-no2
   file-close
 end
 
-
-to export-shifted-no2
-  let file-name-shifted "no2_patch_neighbours.csv"
-  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WM6" "WMB"]
-
-
-  ; Check if the file exists. If not, create it and write the header
-  if not file-exists? file-name-shifted [
-    file-open file-name-shifted
-    file-write "iteration-count, tick, patch-x, patch-y, monitor_type, monitor_code, no2"
-    file-print ""  ; Move to the next line
-    file-close
-  ]
-
-
-  ; Append data to the shifted file
-  file-open file-name-shifted
-
-  ; Loop through each patch in the research area and check if monitor-type is in the list
-  ask patches with [is-research-area?] [
-    if member? monitor-code list_roadstation [
-      let shifted-x pxcor + 2  ; Shift 2 steps to the east
-      let shifted-y pycor - 1  ; Shift 1 step to the south
-
-      ; Ensure that the shifted coordinates are within the world's boundaries
-      if (shifted-x < max-pxcor) and (shifted-y > min-pycor) [
-        file-print (word iteration-count ", " ticks ", " shifted-x ", " shifted-y ", " monitor-type ", " monitor-code ", " no2)
-      ]
-    ]
-  ]
-  ; Close the file
-  file-close
-end
 
 
 @#$#@#$#@
@@ -728,7 +697,7 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="30" runMetricsEveryStep="true">
+  <experiment name="experiment" repetitions="5" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <metric>iteration-count</metric>
