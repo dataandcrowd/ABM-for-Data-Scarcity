@@ -7,7 +7,8 @@ globals [
   ;;; Admin
   gu road lc districtPop districtadminCode station_background station_road
 
-  iteration-count
+  ;iteration-count
+  no2_bs
 
   ;;; Air Quality (Background)
   aq_BG1 aq_BG2 aq_BL0 aq_BQ7 aq_BX1 aq_BX2 aq_CT3 aq_EN1 aq_EN7 aq_GR4 aq_HG4 aq_HI0 aq_HR1 aq_IS6 aq_KC1
@@ -39,7 +40,6 @@ to setup
   set-air-pollution-road ;; in a separate source file
   set-nearest-station
 
-  set iteration-count 0
 
 end
 
@@ -198,12 +198,13 @@ to go
   generate-no2-patches
   generate-no2-road
   generate-no2-road1
-  export-no2
-
-  set iteration-count iteration-count + 1
+  ;export-no2
+  export-no2-bs
 
   tick
-  if ticks = 2921 [stop]
+  if ticks = 2921 [stop
+  ;set iteration-count iteration-count + 1
+  ]
 
 end
 
@@ -243,7 +244,7 @@ to export-no2
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name [
     file-open file-name
-    file-write "iteration-count, tick, patch-x, patch-y, monitor_type, monitor_code, no2"
+    file-write "tick, patch-x, patch-y, monitor_type, monitor_code, no2"
     file-print ""  ; Move to the next line
     file-close
   ]
@@ -255,15 +256,22 @@ to export-no2
   ; Loop through each patch in the research area and check if monitor-type is in the list
   ask patches with [is-research-area?] [
     if member? monitor-code list_roadstation [
-      file-print (word iteration-count ", " ticks ", " pxcor ", " pycor ", " monitor-type ", " monitor-code ", " no2)
+      file-print (word  ticks ", " pxcor ", " pycor ", " monitor-type ", " monitor-code ", " no2)
     ]
   ]
   ; Close the file
   file-close
 end
 
+to export-no2-bs
+  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WMB"]
+  ask patches with [is-research-area?] [
+    if member? monitor-code list_roadstation [
+       set no2_bs (list no2 monitor-code)
+    ]
+  ]
 
-
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 108
@@ -697,10 +705,10 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="5" runMetricsEveryStep="true">
+  <experiment name="experiment" repetitions="30" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <metric>iteration-count</metric>
+    <metric>no2_bs</metric>
   </experiment>
 </experiments>
 @#$#@#$#@

@@ -4,7 +4,7 @@ to generate-no2-road
     
 if not file-exists? file-name [
     file-open file-name
-    file-write "iteration-count, tick, monitor_code, no2"
+    file-write "tick, monitor_code, no2"
     file-print ""  ; Move to the next line
     file-close
   ]
@@ -43,7 +43,7 @@ to write-no2-to-file [monitor_code rd-list]
   let mean-value mean cleaned-list
   ask patches with [monitor_code = monitor-code] 
   [ set no2 mean-value 
-    file-print (word iteration-count "," ticks "," monitor-code "," no2)
+    file-print (word ticks "," monitor-code "," no2)
   ]
   
 end
