@@ -229,7 +229,7 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (round (no2 * (1 + random-float .3)))
+      set no2 (round (no2 * (1 + random-float roadpollution_weight)))
     ]
   ]
 
@@ -338,7 +338,7 @@ OUTPUT
 604
 24
 848
-360
+177
 12
 
 BUTTON
@@ -357,6 +357,21 @@ T
 NIL
 NIL
 1
+
+SLIDER
+604
+196
+767
+229
+roadpollution_weight
+roadpollution_weight
+0
+1
+0.2
+0.1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -709,6 +724,7 @@ NetLogo 6.4.0
     <setup>setup</setup>
     <go>go</go>
     <metric>no2_bs</metric>
+    <steppedValueSet variable="roadpollution_weight" first="0.1" step="0.1" last="1"/>
   </experiment>
 </experiments>
 @#$#@#$#@
