@@ -196,8 +196,8 @@ end
 to go
   generate-no2-background
   generate-no2-patches
-  generate-no2-road
-  generate-no2-road1
+  generate-no2-road ;; real no2
+  generate-no2-road1 ;; modelled no2
   ;export-no2
   export-no2-bs
 
@@ -229,7 +229,7 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (round (no2 * (1 + random-float roadpollution_weight)))
+      set no2 (no2 * (1 + roadpollution_weight))
     ]
   ]
 
