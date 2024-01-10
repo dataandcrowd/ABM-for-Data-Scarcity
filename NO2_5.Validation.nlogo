@@ -196,7 +196,7 @@ end
 to go
   generate-no2-background
   generate-no2-patches
-  generate-no2-road ;; real no2
+  ;generate-no2-road ;; real no2
   generate-no2-road1 ;; modelled no2
   ;export-no2
   export-no2-bs
@@ -229,7 +229,7 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (no2 * (1 + roadpollution_weight))
+      set no2 (no2 * (0.9 + roadpollution_weight))
     ]
   ]
 
@@ -368,7 +368,7 @@ roadpollution_weight
 0
 1
 0.2
-0.1
+0.05
 1
 NIL
 HORIZONTAL
@@ -720,11 +720,11 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="30" runMetricsEveryStep="true">
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <metric>no2_bs</metric>
-    <steppedValueSet variable="roadpollution_weight" first="0.1" step="0.1" last="1"/>
+    <steppedValueSet variable="roadpollution_weight" first="0" step="0.05" last="2"/>
   </experiment>
 </experiments>
 @#$#@#$#@
