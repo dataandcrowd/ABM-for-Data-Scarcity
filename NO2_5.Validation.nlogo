@@ -172,20 +172,6 @@ to set-nearest-station
     ] [distance myself]
   ]
 
-;  ask patches with [
-;    is-research-area? = true and
-;    is-road? = true and
-;    is-monitor-site? = false and
-;    monitor-code = false and
-;    monitor-name = false
-;  ][
-;    set nearest_station min-one-of patches with [
-;      is-monitor-site? = true and
-;      (monitor-type = "Roadside" or monitor-type = "Kerbside")
-;    ] [distance myself]
-;  ]
-
-
 end
 
 
@@ -196,10 +182,11 @@ end
 to go
   generate-no2-background
   generate-no2-patches
-  ;generate-no2-road ;; real no2
   generate-no2-road1 ;; modelled no2
-  ;export-no2
-  export-no2-bs
+  export-no2
+  ;export-no2-bs
+
+  ifelse ("Generate-Real-Data?" = true) [generate-no2-road][]
 
   tick
   if ticks = 2921 [stop
@@ -217,9 +204,10 @@ to generate-no2-patches
        monitor-name = false and
        nearest_station != 0
     [
-      let no2_value [no2] of nearest_station
-      if (is-list? no2_value) [
-        set no2 round (one-of no2_value)
+      let no2_list_from_near_st shuffle [no2] of nearest_station
+
+      if (is-list? no2_list_from_near_st) [
+        set no2 one-of no2_list_from_near_st
         set pcolor scale-color pink no2 0 50
       ]
     ]
@@ -229,11 +217,18 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (no2 * (0.9 + roadpollution_weight))
+      set no2 (no2 * (0.9 + random-float roadpollution_weight))
     ]
   ]
 
-  ;ask one-of patches with [monitor-code = "BT4"][output-print no2]
+  ask patches with [is-monitor-site? and monitor-type = "Roadside"] [
+  let nearest-road min-one-of (patches with [is-road? and is-monitor-site? = false]) [distance myself]
+  if nearest-road != nobody [  ; checks if a road patch is found
+    set no2 [no2] of nearest-road
+  ]
+]
+
+
 end
 
 
@@ -244,7 +239,7 @@ to export-no2
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name [
     file-open file-name
-    file-write "tick, patch-x, patch-y, monitor_type, monitor_code, no2"
+    file-write "tick, monitor_code, no2"
     file-print ""  ; Move to the next line
     file-close
   ]
@@ -254,13 +249,21 @@ to export-no2
 
 
   ; Loop through each patch in the research area and check if monitor-type is in the list
-  ask patches with [is-research-area?] [
+  ask patches with [is-road? and is-research-area?] [
     if member? monitor-code list_roadstation [
-      file-print (word  ticks ", " pxcor ", " pycor ", " monitor-type ", " monitor-code ", " no2)
+      file-print (word  ticks ", " monitor-code ", " no2)
     ]
   ]
   ; Close the file
   file-close
+
+;ask patches with [is-monitor-site? and monitor-type = "Roadside"] [
+;    if member? monitor-code list_roadstation [
+;    output-print (word  ticks ", " monitor-type ", " monitor-code ", " no2)
+;    ]
+;  ]
+
+
 end
 
 to export-no2-bs
@@ -272,6 +275,24 @@ to export-no2-bs
   ]
 
 end
+
+
+;;;;;;;;;;;;;;
+
+to iterate-10-times
+  repeat 10 [
+    setup
+    ;reset-ticks
+    go-until-2921
+  ]
+end
+
+to go-until-2921
+  while [ticks < 2921] [
+    go
+  ]
+end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 108
@@ -366,12 +387,40 @@ SLIDER
 roadpollution_weight
 roadpollution_weight
 0
-1
-0.2
+0.3
+0.3
 0.05
 1
 NIL
 HORIZONTAL
+
+SWITCH
+604
+234
+760
+267
+Generate-Real-Data
+Generate-Real-Data
+1
+1
+-1000
+
+BUTTON
+14
+135
+78
+168
+iterate
+iterate-10-times
+NIL
+1
+T
+OBSERVER
+NIL
+I
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
