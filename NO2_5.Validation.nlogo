@@ -7,7 +7,6 @@ globals [
   ;;; Admin
   gu road lc districtPop districtadminCode station_background station_road
 
-  ;iteration-count
   no2_bs
 
   ;;; Air Quality (Background)
@@ -39,7 +38,6 @@ to setup
   set-air-pollution-background ;; in a separate source file
   set-air-pollution-road ;; in a separate source file
   set-nearest-station
-
 
 end
 
@@ -217,7 +215,7 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (no2 * (0.9 + random-float roadpollution_weight))
+      set no2 (no2 * (1 + random-float roadpollution_weight))
     ]
   ]
 
@@ -282,7 +280,6 @@ end
 to iterate-10-times
   repeat 10 [
     setup
-    ;reset-ticks
     go-until-2921
   ]
 end
@@ -292,7 +289,6 @@ to go-until-2921
     go
   ]
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 108
@@ -387,8 +383,8 @@ SLIDER
 roadpollution_weight
 roadpollution_weight
 0
-0.3
-0.3
+1
+0.5
 0.05
 1
 NIL
