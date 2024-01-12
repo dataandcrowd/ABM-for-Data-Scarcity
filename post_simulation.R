@@ -2,30 +2,42 @@ library(tidyverse)
 library(janitor)
 library(data.table)
 
-road01 <- 
-  fread("no2_export_weight0.1.csv") |> 
+road00 <- 
+  fread("no2_export_weight00.csv") |> 
   as_tibble() |> 
   clean_names() |> 
-  mutate(weight = 0.1) |> 
+  mutate(weight = 0) |> 
   filter(tick < 2850)
 
-
-road02 <- 
-  fread("no2_export_weight0.2.csv") |> 
+road25 <- 
+  fread("no2_export_weight25.csv") |> 
   as_tibble() |> 
   clean_names() |> 
-  mutate(weight = 0.2) |> 
+  mutate(weight = 0.25) |> 
   filter(tick < 2850)
 
-road03 <- 
-  fread("no2_export_weight0.3.csv") |> 
+road50 <- 
+  fread("no2_export_weight50.csv") |> 
   as_tibble() |> 
   clean_names() |> 
-  mutate(weight = 0.3) |> 
+  mutate(weight = 0.5) |> 
   filter(tick < 2850)
 
-roadsim <- bind_rows(road01, road02, road03, road05, road06)
+road75 <- 
+  fread("no2_export_weight75.csv") |> 
+  as_tibble() |> 
+  clean_names() |> 
+  mutate(weight = 0.75) |> 
+  filter(tick < 2850)
 
+road100 <- 
+  fread("no2_export_weight100.csv") |> 
+  as_tibble() |> 
+  clean_names() |> 
+  mutate(weight = 1) |> 
+  filter(tick < 2850)
+
+roadsim <- bind_rows(road00, road25, road50, road75, road100)
 real <- 
   fread("no2_real.csv") |> 
   as_tibble()
