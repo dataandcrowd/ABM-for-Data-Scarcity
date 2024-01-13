@@ -215,7 +215,7 @@ end
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
     if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (no2 * (1.5 + random-float roadpollution_weight))
+      set no2 (no2 * (1.25 + random-float roadpollution_weight))
     ]
   ]
 
@@ -377,7 +377,7 @@ roadpollution_weight
 roadpollution_weight
 0
 1
-0.0
+0.25
 0.25
 1
 NIL
