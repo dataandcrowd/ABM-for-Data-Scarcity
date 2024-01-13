@@ -61,16 +61,16 @@ roadsim_mean %>%
   ) |> View()
 
 
+roadsim_mean %>% 
+  left_join(real, by = c("tick", "monitor_code")) |> 
+  group_by(monitor_code, weight) |> 
+  summarise(no2_model = mean(no2.x),
+            no2_data = mean(no2.y),
+            diff = no2_data - no2_model
+  ) |> 
+  filter(weight == 0.5) |> 
+  View()
 
-# roadsim_mean |> 
-#   left_join(real, by = c("tick", "monitor_code")) |>
-#   group_by(monitor_code, weight) |> 
-#   summarise(no2_model = mean(no2.x),
-#             no2_model_sd = sd(no2.x),
-#             no2_data = mean(no2.y),
-#             no2_data_sd = sd(no2.y)) |> 
-#   mutate(minus = no2_model - no2_data) |>
-#   select(monitor_code, weight, minus) |> 
-#   pivot_wider(names_from = weight, values_from = minus) |> 
-#   View()
+
+
  
