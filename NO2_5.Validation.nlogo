@@ -377,8 +377,8 @@ roadpollution_weight
 roadpollution_weight
 0
 1
-0.25
-0.25
+0.5
+0.1
 1
 NIL
 HORIZONTAL
