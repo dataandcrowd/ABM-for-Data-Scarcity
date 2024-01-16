@@ -153,14 +153,16 @@ roadsim_mean |>
   ) |> 
   mutate(weight = as.factor(weight)) |> 
   ggplot(aes(weight, no2_model)) +
-  geom_line(aes(group = monitor_code, colour = monitor_code)) +
+  #geom_line(aes(group = monitor_code, colour = monitor_code)) +
+  geom_smooth(aes(group = monitor_code, colour = monitor_code)) + 
   geom_point() +
+  labs(x = "Weight", y = "NO2(µg/m3)") +
   geom_hline(data = real_plot, aes(yintercept = no2_data), linetype='dotted', colour = "blue", size = 1) + 
   facet_wrap(~monitor_code, scale = "free", ncol = 3) +
   theme_bw() +
   theme(legend.position = "none")
   
-ggsave("plot.jpg", width = 9, height = 9)  
+ggsave("plot.jpg", width = 8, height = 9.5)  
 
 
  
