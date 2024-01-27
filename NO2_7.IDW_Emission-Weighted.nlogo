@@ -14,17 +14,14 @@ globals [
   aq_LB6 aq_LH0 aq_LW1 aq_LW5 aq_NM3 aq_RB7 aq_RI2 aq_SK6 aq_WA2 aq_WA9 aq_WM0
 
   ;;; Air Quality (Roadside)
-  rd_BT4 rd_BT6 rd_BT8 rd_BY7 rd_CE1 rd_CE2 rd_CR5 rd_CR7 rd_CT4
-  rd_CT6 rd_EA6 rd_EI1 rd_EN4 rd_EN5 rd_GB6 rd_GN0 rd_GN3 rd_GN4
-  rd_GN5 rd_GN6 rd_GR7 rd_GR8 rd_GR9 rd_GV1  rd_HG1 rd_HK6
-  rd_HR2 rd_HV1 rd_HV3 rd_IM1 rd_IS2 rd_KT4 rd_KT5 rd_KT6 rd_LB4
-  rd_LW2 rd_LW4 rd_ME9 rd_MY1 rd_NB1 rd_NM2 rd_RB4 rd_RI1 rd_SK5
-  rd_SK8 rd_SKA rd_ST4 rd_ST6 rd_ST9 rd_TH2 rd_TH4 rd_TL4 rd_TL6
-  rd_WA7 rd_WA8 rd_WAA rd_WAB rd_WAC rd_WM6 rd_WMB rd_WMC rd_WMD
+  rd_BT4 rd_BT6 rd_BT8 rd_BY7 rd_CR5 rd_CT4 rd_CT6 rd_EA6 rd_EI1 rd_EN4 rd_EN5
+  rd_GB6 rd_GN0 rd_GN3 rd_GN5 rd_GN6 rd_GR7 rd_GR8 rd_GR9 rd_HK6 rd_HV1 rd_HV3
+  rd_IM1 rd_IS2 rd_KT4 rd_KT5 rd_KT6 rd_LB4 rd_LW4 rd_MY1 rd_NB1 rd_NM2 rd_RB4 rd_WA7
+  rd_RI1 rd_SK8 rd_ST4 rd_ST6 rd_TH4 rd_TL4 rd_WAA rd_WAB rd_WAC rd_WM6 rd_WMB rd_WMC
 ]
 breed [borough-labels borough-label]
-patches-own [is-research-area? is-road? name homecode pollution-level traffic nox_weight
-  is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2 ]
+patches-own [is-research-area? is-road? name homecode traffic nox_weight
+  is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2_list no2 ]
 
 
 to setup
@@ -128,7 +125,16 @@ to set-nox-weight
       ]
  ]]
 
-  ask patches with [nox_weight = 0 or nox_weight = nobody][set nox_weight ]
+  ask patches with [nox_weight = 0 or nox_weight = nobody][set nox_weight 0]
+  ask patches with [is-research-area?][
+    if nox_weight = 0 [set nox_weight 1]
+    if nox_weight = 1 [set nox_weight 1.15]
+    if nox_weight = 2 [set nox_weight 1.20]
+    if nox_weight = 3 [set nox_weight 1.25]
+    if nox_weight = 4 [set nox_weight 1.30]
+    if nox_weight = 5 [set nox_weight 1.40]
+
+  ]
 
 output-print "nox weighting added" ;;
 end
@@ -139,17 +145,13 @@ to set-monitor-location
   let stations gis:load-dataset "Data/London_AP_Stations.shp"
 
   set station_background (list  "BG1" "BG2" "BL0" "BQ7" "BX1" "BX2" "CT3" "EN1" "EN7" "GR4" "HG4" "HI0"
- "HR1" "IS6" "KC1" "LB6" "LH0" "LW1" "LW5" "NM3"  "RB7" "RI2" "SK6" "WA2" "WA9" "WM0" )
+ "HR1" "IS6" "KC1" "LB6" "LH0" "LW1" "LW5" "NM3"  "RB7" "RI2" "SK6" "WA2" "WA9" "WM0")
 
-  set station_road (list "BT4" "BT6" "BT8" "BY7" "CE1" "CE2" "CR5" "CR7" "CT4"
-    "CT6" "EA6" "EI1" "EN4" "EN5" "GB6" "GN0" "GN3" "GN4"
-    "GN5" "GN6" "GR7" "GR8" "GR9" "GV1" "GV2" "HG1" "HK6"
-    "HR2" "HV1" "HV3" "IM1" "IS2" "KT4" "KT5" "KT6" "LB4"
-    "LW2" "LW4" "ME9" "MY1" "NB1" "NM2" "RB4" "RI1" "SK5"
-    "SK8" "SKA" "ST4" "ST6" "ST9" "TH2" "TH4" "TL4" "TL6"
-    "WA7" "WA8" "WAA" "WAB" "WAC" "WM6" "WMB" "WMC" "WMD"
+  set station_road (list "BT4" "BT6" "BT8" "BY7" "CR5"
+    "CT4" "CT6" "EA6" "EI1" "EN4" "EN5" "GB6" "GN0" "GN3" "GN5" "GN6" "GR7" "GR8" "GR9" "GV2"
+    "HK6" "HV1" "HV3" "IM1" "IS2" "KT4" "KT5" "KT6" "LB4" "LW4" "MY1" "NB1" "NM2" "RB4" "RI1"
+    "SK8" "ST4" "ST6" "TH4" "WAA" "WAB" "WAC" "WM6" "WMB" "WMC"
     )
-
 
   foreach gis:feature-list-of stations [vector-feature ->
     let current_code gis:property-value vector-feature "code"
@@ -198,8 +200,7 @@ to set-nearest-station
     monitor-code = false and
     monitor-name = false ][
     set nearest_station min-one-of patches with [
-      is-monitor-site? = true and
-      (monitor-type = "Urban Background" or monitor-type = "Suburban")
+      is-monitor-site? = true
     ] [distance myself]
   ]
 
@@ -214,6 +215,7 @@ end
 
 to go
   generate-no2-background
+  generate-no2-road
   generate-no2-patches1
   ;generate-no2-road1 ;; modelled no2
   export-no2
@@ -229,23 +231,6 @@ to go
 end
 
 
-to generate-no2-patches
-  ask patches [
-    if is-research-area? = true and
-       is-monitor-site? = false and
-       monitor-code = false and
-       monitor-name = false and
-       nearest_station != 0
-    [
-      let no2_list_from_near_st shuffle [no2] of nearest_station
-
-      if (is-list? no2_list_from_near_st) [
-        set no2 one-of no2_list_from_near_st
-        set pcolor scale-color pink no2 0 50
-      ]
-    ]
-  ]
-end
 
 to generate-no2-road1
   ask patches with [is-road? = true and is-research-area? = true] [
@@ -270,8 +255,9 @@ to generate-no2-patches1
        monitor-code = false and
        monitor-name = false
     [
-      set pollution-level (calculate-idw-no2 self)
-      set pcolor scale-color pink pollution-level 0 100
+      let no2_interpolated (calculate-idw-no2 self)
+      set no2 no2_interpolated * nox_weight
+      set pcolor scale-color pink no2 0 100
     ]
   ]
 end
@@ -283,8 +269,8 @@ to-report calculate-idw-no2 [target-patch]
   let total-weight 0
 
   ; Loop through each station
-  ask patches with [monitor-type = "Urban Background" or monitor-type = "Suburban"] [
-    let avg_no2 mean [no2] of self
+  ask patches with [is-monitor-site?] [
+    let avg_no2 mean [no2_list] of self
 
     let dist distance target-patch  ; Calculate the distance from the station to the patch
     if dist > 0 [  ; Avoid division by zero
@@ -302,8 +288,6 @@ to-report calculate-idw-no2 [target-patch]
     report 0  ; Avoid division by zero, handle as you see fit
   ]
 end
-
-
 
 
 
@@ -459,17 +443,6 @@ roadpollution_weight
 1
 NIL
 HORIZONTAL
-
-SWITCH
-604
-234
-760
-267
-Generate-Real-Data
-Generate-Real-Data
-1
-1
--1000
 
 BUTTON
 14
