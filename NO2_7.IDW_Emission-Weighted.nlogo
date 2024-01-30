@@ -20,7 +20,7 @@ globals [
   rd_RI1 rd_SK8 rd_ST4 rd_ST6 rd_TH4 rd_TL4 rd_WAA rd_WAB rd_WAC rd_WM6 rd_WMB rd_WMC
 ]
 breed [borough-labels borough-label]
-patches-own [is-research-area? is-road? name homecode traffic nox_weight
+patches-own [is-research-area? is-road? name homecode traffic nox_weight is-built-area?
   is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2_list no2 ]
 
 
@@ -31,6 +31,7 @@ to setup
   set-gis-data
   set-roads
   set-nox-weight
+  set-urban-areas
   set-monitor-location
   set-air-pollution-background ;; in a separate source file
   set-air-pollution-road ;; in a separate source file
@@ -44,7 +45,7 @@ to set-gis-data
   ask patches [set pcolor white]
   gis:load-coordinate-system (word "Data/London_Boundary_cleaned.prj")
   set gu   gis:load-dataset "Data/London_Boundary_cleaned.shp"
-  ;set lc   gis:load-dataset "Data/London_LandCover.shp"
+  set lc   gis:load-dataset "Data/London_LandCover.shp"
   set road gis:load-dataset "Data/London_Road_Dissolve.shp"
   set nox_weighting gis:load-dataset "Data/London_NOX.shp"
 
@@ -138,7 +139,19 @@ to set-nox-weight
 
 output-print "nox weighting added" ;;
 end
+;;-----------------------------------
+;; Move agents to urban areas coded 20 or 21
+to set-urban-areas
+  foreach gis:feature-list-of lc [vector-feature ->
+    ask patches [if gis:intersects? vector-feature self
+                [let all-twenty-two-codes gis:property-value vector-feature "Code"
+        if (all-twenty-two-codes = 20) or (all-twenty-two-codes = 21) [set is-built-area? true]
+    ]]
+ ]
+ ask patches with [is-built-area? != true][set is-built-area? false]
 
+ output-print "Land Cover Allocated" ;;
+end
 
 ;;----------------------------
 to set-monitor-location
@@ -221,10 +234,10 @@ to go
   export-no2
   ;export-no2-bs
 
-  ifelse ("Generate-Real-Data?" = true) [generate-no2-road][]
+  ;ifelse ("Generate-Real-Data?" = true) [generate-no2-road][]
 
   tick
-  if ticks = 2921 [stop
+  if ticks = 2191 [stop
   ;set iteration-count iteration-count + 1
   ]
 
@@ -260,6 +273,21 @@ to generate-no2-patches1
       set pcolor scale-color pink no2 0 100
     ]
   ]
+
+
+  ask patches with [not is-built-area?][set no2 (no2 * 0.7)]
+
+    ask patches with [monitor-type = "Urban Background" or monitor-type = "Suburban"] [
+  let valid-neighbors neighbors4 with [not is-monitor-site?]
+  if count valid-neighbors > 0 [
+    let average-no2 mean [no2] of valid-neighbors
+    ;output-print average-no2
+    if no2 = 0 [set no2 average-no2]
+  ]
+]
+
+
+
 end
 
 
@@ -269,7 +297,7 @@ to-report calculate-idw-no2 [target-patch]
   let total-weight 0
 
   ; Loop through each station
-  ask patches with [is-monitor-site?] [
+  ask patches with [is-monitor-site? and monitor-type = "Roadside" or monitor-type = "Kerbside"] [
     let avg_no2 mean [no2_list] of self
 
     let dist distance target-patch  ; Calculate the distance from the station to the patch
@@ -293,7 +321,9 @@ end
 
 to export-no2
   let file-name "no2_export.csv"
-  let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WMB"]
+  ;let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WMB"]
+  let list_roadstation (list  "BG1" "BG2" "BL0" "BQ7" "BX1" "BX2" "CT3" "EN1" "EN7" "GR4" "HG4" "HI0"
+ "HR1" "IS6" "KC1" "LB6" "LH0" "LW1" "LW5" "NM3"  "RB7" "RI2" "SK6" "WA2" "WA9" "WM0")
 
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name [
