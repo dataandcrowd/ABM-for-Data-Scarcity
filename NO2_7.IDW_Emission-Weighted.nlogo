@@ -227,41 +227,19 @@ end
 ;;;;;;;;;;;;
 
 to go
-  generate-no2-background
-  generate-no2-road
-  generate-no2-patches1
-  ;generate-no2-road1 ;; modelled no2
+  generate-no2-background ;; in the .nls file
+  generate-no2-road ;; in the .nls file
+  generate-no2-patches
   export-no2
   ;export-no2-bs
 
-  ;ifelse ("Generate-Real-Data?" = true) [generate-no2-road][]
-
   tick
-  if ticks = 2191 [stop
-  ;set iteration-count iteration-count + 1
-  ]
+  if ticks = 2191 [ stop ]
 
 end
 
 
-
-to generate-no2-road1
-  ask patches with [is-road? = true and is-research-area? = true] [
-    if not is-list? no2 [ ;; the monitoring stations have no2 in a list format
-      set no2 (no2 * (1.25 + random-float roadpollution_weight))
-    ]
-  ]
-
-  ask patches with [is-monitor-site? and monitor-type = "Roadside"] [
-  let nearest-road min-one-of (patches with [is-road? and is-monitor-site? = false]) [distance myself]
-  if nearest-road != nobody [  ; checks if a road patch is found
-    set no2 [no2] of nearest-road
-  ]
-]
-end
-
-
-to generate-no2-patches1
+to generate-no2-patches
   ask patches [
     if is-research-area? and
        not is-monitor-site? and
@@ -277,16 +255,11 @@ to generate-no2-patches1
 
   ask patches with [not is-built-area?][set no2 (no2 * 0.7)]
 
-    ask patches with [monitor-type = "Urban Background" or monitor-type = "Suburban"] [
+  ask patches with [monitor-type = "Urban Background" or monitor-type = "Suburban"] [
   let valid-neighbors neighbors4 with [not is-monitor-site?]
-  if count valid-neighbors > 0 [
-    let average-no2 mean [no2] of valid-neighbors
-    ;output-print average-no2
-    if no2 = 0 [set no2 average-no2]
-  ]
+  set no2 one-of [no2] of valid-neighbors
+
 ]
-
-
 
 end
 
@@ -375,10 +348,10 @@ to go-until-2921
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-108
-24
-569
-381
+129
+18
+590
+375
 -1
 -1
 3.0
@@ -437,9 +410,9 @@ NIL
 
 OUTPUT
 604
-24
+17
 848
-177
+170
 12
 
 BUTTON
@@ -461,9 +434,9 @@ NIL
 
 SLIDER
 604
-196
+184
 767
-229
+217
 roadpollution_weight
 roadpollution_weight
 0
@@ -489,6 +462,26 @@ NIL
 I
 NIL
 NIL
+1
+
+TEXTBOX
+14
+176
+121
+275
+Go: Run the simulation once\nStep: just one tick\nIterate: Run the whole simulation for 10 times
+9
+0.0
+1
+
+TEXTBOX
+142
+329
+259
+369
+NO2 Concentration (increase):\nDarker -> Pink -> White
+9
+0.0
 1
 
 @#$#@#$#@
