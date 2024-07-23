@@ -1,4 +1,4 @@
-__includes["csv_import_NO2background.nls" "csv_run_NO2background.nls"]
+__includes["csv_import_NO2background.nls" "csv_run_NO2background_old.nls"]
 
 extensions [csv gis ]
 globals [
@@ -12,7 +12,7 @@ globals [
 ]
 breed [borough-labels borough-label]
 patches-own [is-research-area? is-road? name homecode
-  is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2 ]
+  is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2 no2_list]
 
 
 to setup
@@ -593,7 +593,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.3.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
