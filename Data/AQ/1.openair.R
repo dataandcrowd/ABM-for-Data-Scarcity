@@ -22,12 +22,13 @@ mapview(ldn_sf, zcol = "site_type") +
 
 
 ldn_sf %>%
+  st_drop_geometry() |> 
   group_by(site_type) %>% 
   summarise(count = n())
 
 ##### KCL NO2
-ldn_no2_raw  <- importAURN(site = ldn_sf$code, pollutant = "no2", year = 2019:2022)
-ldn_no2_raw2 <- importKCL(site = ldn_sf$code, pollutant = "no2", year = 2019:2022) 
+ldn_no2_raw  <- importAURN(site = ldn_sf$code, pollutant = "no2", year = 2023:2024)
+ldn_no2_raw2 <- importKCL(site = ldn_sf$code, pollutant = "no2", year = 2023:2024) 
 
 
 unique(ldn_no2_raw$site)

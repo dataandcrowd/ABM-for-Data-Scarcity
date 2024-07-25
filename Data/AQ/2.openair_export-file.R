@@ -65,8 +65,8 @@ road_data |>
 
  
 # Define start and end dates
-start_date <- ymd_hms("2019-01-01 00:00:00")
-end_date <- ymd_hms("2021-12-31 23:00:00")
+start_date <- ymd_hms("2023-01-01 00:00:00")
+end_date <- ymd_hms("2024-03-31 23:00:00")
 
 # Create a sequence of hourly timestamps
 hourly_sequence <- seq(from = start_date, to = end_date, by = "hour")
@@ -96,7 +96,7 @@ process_dataframe <- function(df) {
     fill(site, code, site_type, .direction = "downup") |> 
     mutate(Date = as_date(timestamp),
            hours = hour(timestamp),
-           daynight = case_when(hours >= 8 & hours <= 17 ~ "Work",
+           daynight = case_when(hours >= 7 & hours <= 17 ~ "Work",
                                 TRUE ~ "Home")) |> 
     arrange(site, code, timestamp) |> 
     group_by(site, code) |> 
