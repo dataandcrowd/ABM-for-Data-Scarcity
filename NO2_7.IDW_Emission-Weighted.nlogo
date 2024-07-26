@@ -234,7 +234,7 @@ to go
   ;export-no2-bs
 
   tick
-  if ticks = 2191 [ stop ]
+  if ticks = 890 [ stop ]
 
 end
 
@@ -342,7 +342,7 @@ to iterate-10-times
 end
 
 to go-until-2921
-  while [ticks < 2921] [
+  while [ticks < 890] [
     go
   ]
 end
