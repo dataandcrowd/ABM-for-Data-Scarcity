@@ -1,5 +1,7 @@
 __includes["csv_import_NO2background.nls" "csv_run_NO2background.nls"
-  "csv_import_NO2road.nls" "csv_run_NO2road.nls"
+  "csv_import_NO2road.nls"
+  "crossval.nls"
+  ;"csv_run_NO2road.nls"
 ]
 
 extensions [csv gis]
@@ -168,10 +170,13 @@ to set-monitor-location
     )
 
 let random-station one-of station_road
+output-print word "the station that was removed is :"random-station
+
 
 ifelse LOOCV?
 [
   set station_road remove random-station station_road
+
 ]
 [
   ;; Do something else if LOOCV? switch is off
