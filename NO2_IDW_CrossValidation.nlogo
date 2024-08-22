@@ -8,7 +8,6 @@ extensions [csv gis]
 globals [
   ;;; Admin
   gu road lc districtPop districtadminCode station_background station_road nox_weighting
-
   no2_bs
 
   ;;; Air Quality (Background)
@@ -250,6 +249,7 @@ to go
   ;export-no2
   export-no2-bs
 
+
   tick
   if ticks = 890 [ stop ]
 
@@ -310,21 +310,21 @@ end
 
 
 to export-no2
-  let file-name "no2_export.csv"
+  let file-name1 "no2_export.csv"
   ;let list_roadstation ["BT4" "BT6" "BT8" "EI1" "GB6" "GN0" "GN3" "HV1" "HV3" "IS2" "KT6" "LW4" "RB4" "WMB"]
   let list_roadstation (list  "BG1" "BG2" "BL0" "BQ7" "BX1" "BX2" "CT3" "EN1" "EN7" "GR4" "HG4" "HI0"
  "HR1" "IS6" "KC1" "LB6" "LH0" "LW1" "LW5" "NM3"  "RB7" "RI2" "SK6" "WA2" "WA9" "WM0")
 
   ; Check if the file exists. If not, create it and write the header
-  if not file-exists? file-name [
-    file-open file-name
+  if not file-exists? file-name1 [
+    file-open file-name1
     file-write "tick, monitor_code, no2"
     file-print ""  ; Move to the next line
     file-close
   ]
 
     ; Append data to the file
-  file-open file-name
+  file-open file-name1
 
 
   ; Loop through each patch in the research area and check if monitor-type is in the list
@@ -350,9 +350,8 @@ to export-no2-bs
     file-close
   ]
 
-    ; Append data to the file
+  ; Append data to the file
   file-open file-name
-
 
   ; Loop through each patch in the research area and check if monitor-type is in the list
   ask patches with [is-road? and is-research-area?] [
@@ -362,8 +361,8 @@ to export-no2-bs
   ]
   ; Close the file
   file-close
-
 end
+
 
 
 ;;;;;;;;;;;;;;
@@ -875,14 +874,6 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="experiment" repetitions="10" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <metric>no2_bs</metric>
-    <steppedValueSet variable="roadpollution_weight" first="0" step="0.05" last="2"/>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
