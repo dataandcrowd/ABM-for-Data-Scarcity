@@ -130,11 +130,11 @@ to set-nox-weight
   ask patches with [nox_weight = 0 or nox_weight = nobody][set nox_weight 0]
   ask patches with [is-research-area?][
     if nox_weight = 0 [set nox_weight 1]
-    if nox_weight = 1 [set nox_weight 1.15]
-    if nox_weight = 2 [set nox_weight 1.20]
-    if nox_weight = 3 [set nox_weight 1.25]
-    if nox_weight = 4 [set nox_weight 1.30]
-    if nox_weight = 5 [set nox_weight 1.40]
+    if nox_weight = 1 [set nox_weight 1.05]
+    if nox_weight = 2 [set nox_weight 1.12]
+    if nox_weight = 3 [set nox_weight 1.17]
+    if nox_weight = 4 [set nox_weight 1.24]
+    if nox_weight = 5 [set nox_weight 1.30]
 
   ]
 
@@ -292,7 +292,7 @@ to-report calculate-idw-no2 [target-patch]
 
     let dist distance target-patch  ; Calculate the distance from the station to the patch
     if dist > 0 [  ; Avoid division by zero
-      let weight 1 / (dist ^ 2)  ; Calculate the weight based on distance
+      let weight 1 / (dist ^ 1.5)  ; Calculate the weight based on distance
       ;let avg_no2 mean no2  ; Calculate the average NO2 value for the station
       set total-weighted-value total-weighted-value + (avg_no2 * weight)
       set total-weight total-weight + weight
@@ -368,7 +368,7 @@ end
 ;;;;;;;;;;;;;;
 
 to iterate-10-times
-  repeat 10 [
+  repeat 3 [
     setup
     go-until-2921
   ]
