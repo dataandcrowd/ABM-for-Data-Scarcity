@@ -288,7 +288,19 @@ to-report calculate-idw-no2 [target-patch]
 
   ; Loop through each station
   ask patches with [is-monitor-site? and monitor-type = "Roadside" or monitor-type = "Kerbside"] [
-    let avg_no2 mean [no2_list] of self
+
+   let no2_listing [no2_list] of self ; Assuming no2_list is a variable in your turtles/patches
+   let avg_no2 0
+
+  ifelse no2-action = "average" [
+    set avg_no2 mean no2_listing
+  ] [
+    if no2-action = "random one" [
+      set avg_no2 one-of no2_listing
+    ]
+  ]
+
+
 
     let dist distance target-patch  ; Calculate the distance from the station to the patch
     if dist > 0 [  ; Avoid division by zero
@@ -368,7 +380,7 @@ end
 ;;;;;;;;;;;;;;
 
 to iterate-10-times
-  repeat 3 [
+  repeat 15 [
     setup
     go-until-2921
   ]
@@ -527,6 +539,16 @@ LOOCV?
 0
 1
 -1000
+
+CHOOSER
+603
+271
+741
+316
+no2-action
+no2-action
+"average" "random one"
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
