@@ -1,6 +1,12 @@
 to generate-no2-road
-  let monitor-codes ["BT4" "BT6" "BT8" "BY7" "CR5" "CT4" "CT6" "EA6" "EI1" "EN4" "EN5" "GB6" "GN0" "GN3" "GN5" "GN6" "GR7" "GR8" "GR9" "HK6" "HV1" "HV3" "IM1" "IS2" "KT4" "KT5" "KT6" "LB4" "LW4" "MY1" "NB1" "NM2" "RB4" "RI1" "SK8" "ST4" "ST6" "TH4" "WAA" "WAB" "WAC" "WM6" "WMB" "WMC"]
-  let rd-lists (list rd_BT4 rd_BT6 rd_BT8 rd_BY7 rd_CR5 rd_CT4 rd_CT6 rd_EA6 rd_EI1 rd_EN4 rd_EN5 rd_GB6 rd_GN0 rd_GN3 rd_GN5 rd_GN6 rd_GR7 rd_GR8 rd_GR9 rd_HK6 rd_HV1 rd_HV3 rd_IM1 rd_IS2 rd_KT4 rd_KT5 rd_KT6 rd_LB4 rd_LW4 rd_MY1 rd_NB1 rd_NM2 rd_RB4 rd_RI1 rd_SK8 rd_ST4 rd_ST6 rd_TH4 rd_WAA rd_WAB rd_WAC rd_WM6 rd_WMB rd_WMC)
+  let monitor-codes ["BT4" "BT6" "BT8" "BY7" "CR5" "CT4" "CT6" "EA6" "EI1" "EN4" "EN5" "GB6" "GN0" 
+    "GN3" "GN5" "GN6" "GR7" "GR8" "GR9" "HK6" "HV1" "HV3" "IM1" "IS2" "KT4" "KT5" "KT6" "LB4" "LW4"
+    "MY1" "NB1" "NM2" "RB4" "RI1" "SK8" "ST4" "ST6" "TH4" "WAA" "WAB" "WAC" "WM6" "WMB" "WMC"]
+  let rd-lists (list rd_BT4 rd_BT6 rd_BT8 rd_BY7 rd_CR5 rd_CT4 
+    rd_CT6 rd_EA6 rd_EI1 rd_EN4 rd_EN5 rd_GB6 rd_GN0 rd_GN3 rd_GN5 
+    rd_GN6 rd_GR7 rd_GR8 rd_GR9 rd_HK6 rd_HV1 rd_HV3 rd_IM1 rd_IS2 
+    rd_KT4 rd_KT5 rd_KT6 rd_LB4 rd_LW4 rd_MY1 rd_NB1 rd_NM2 rd_RB4 
+    rd_RI1 rd_SK8 rd_ST4 rd_ST6 rd_TH4 rd_WAA rd_WAB rd_WAC rd_WM6 rd_WMB rd_WMC)
   
   ; Iterate through all stations, but only process those that are in the station_road variable
 (foreach monitor-codes rd-lists [

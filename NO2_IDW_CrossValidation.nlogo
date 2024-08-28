@@ -7,7 +7,7 @@ __includes["csv_import_NO2background.nls" "csv_run_NO2background.nls"
 extensions [csv gis]
 globals [
   ;;; Admin
-  gu road lc districtPop districtadminCode station_background station_road nox_weighting
+  gu road lc districtPop districtadminCode station_background station_road nox_weighting random-station
   no2_bs
 
   ;;; Air Quality (Background)
@@ -168,7 +168,7 @@ to set-monitor-location
     "SK8" "ST4" "ST6" "TH4" "WAA" "WAB" "WAC" "WM6" "WMB" "WMC"
     )
 
-let random-station one-of station_road
+set random-station one-of station_road
 output-print word "the station that was removed is :"random-station
 
 
@@ -246,8 +246,8 @@ to go
   generate-no2-background ;; in the .nls file
   generate-no2-road ;; in the .nls file
   generate-no2-patches
-  ;export-no2
-  export-no2-bs
+  export-no2
+  ;export-no2-bs
 
 
   tick
@@ -300,8 +300,6 @@ to-report calculate-idw-no2 [target-patch]
     ]
   ]
 
-
-
     let dist distance target-patch  ; Calculate the distance from the station to the patch
     if dist > 0 [  ; Avoid division by zero
       let weight 1 / (dist ^ 1.5)  ; Calculate the weight based on distance
@@ -330,7 +328,7 @@ to export-no2
   ; Check if the file exists. If not, create it and write the header
   if not file-exists? file-name1 [
     file-open file-name1
-    file-write "tick, monitor_code, no2"
+    file-write "tick, monitor_code, no2, no2_list, station_removed"
     file-print ""  ; Move to the next line
     file-close
   ]
@@ -342,7 +340,7 @@ to export-no2
   ; Loop through each patch in the research area and check if monitor-type is in the list
   ask patches with [is-road? and is-research-area?] [
     if member? monitor-code list_roadstation [
-      file-print (word  ticks ", " monitor-code ", " no2)
+      file-print (word  ticks ", " monitor-code ", " no2 ", " mean(no2_list) ", " random-station)
     ]
   ]
   ; Close the file
@@ -380,9 +378,12 @@ end
 ;;;;;;;;;;;;;;
 
 to iterate-10-times
-  repeat 15 [
+  let i 0
+  while [i < 10] [
     setup
     go-until-2921
+    set i i + 1
+    print i
   ]
 end
 

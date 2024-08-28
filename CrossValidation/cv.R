@@ -2,7 +2,7 @@ library(tidyverse)
 library(janitor)
 library(data.table)
 
-cv_raw <- read_csv("no2_export.csv") |> clean_names()
+cv_raw <- read_csv("no2_export_random.csv") |> clean_names()
  
 cv_raw |> 
   group_by(tick, monitor_code) |> 
