@@ -302,7 +302,7 @@ to-report calculate-idw-no2 [target-patch]
 
     let dist distance target-patch  ; Calculate the distance from the station to the patch
     if dist > 0 [  ; Avoid division by zero
-      let weight 1 / (dist ^ 1.5)  ; Calculate the weight based on distance
+      let weight 1 / (dist ^ IDW-beta)  ; Calculate the weight based on distance
       ;let avg_no2 mean no2  ; Calculate the average NO2 value for the station
       set total-weighted-value total-weighted-value + (avg_no2 * weight)
       set total-weight total-weight + weight
@@ -478,21 +478,6 @@ NIL
 NIL
 1
 
-SLIDER
-604
-184
-767
-217
-roadpollution_weight
-roadpollution_weight
-0
-1
-0.5
-0.1
-1
-NIL
-HORIZONTAL
-
 BUTTON
 14
 135
@@ -549,7 +534,22 @@ CHOOSER
 no2-action
 no2-action
 "average" "random one"
+0
+
+SLIDER
+605
+183
+777
+216
+IDW-beta
+IDW-beta
+0.5
+2
+2.0
+0.5
 1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
