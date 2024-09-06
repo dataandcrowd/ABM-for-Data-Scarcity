@@ -2,8 +2,8 @@ library(tidyverse)
 library(janitor)
 library(data.table)
 
-cv_random_raw <- read_csv("no2_export_random.csv") |> clean_names()
-cv_average_raw <- read_csv("no2_export_average.csv") |> clean_names()
+cv_random_raw <- read_csv("beta2_random.csv") |> clean_names()
+cv_average_raw <- read_csv("beta2_average.csv") |> clean_names()
 
  
 cv_random_raw |> 
@@ -46,6 +46,13 @@ rmse_average |>
   rename(rmse_av = rmse.x,
          rmse_random = rmse.y)
 
+
+rmse_average |> 
+  left_join(rmse_random, by = "monitor_code") |> 
+  rename(rmse_av = rmse.x, rmse_random = rmse.y) -> combined_df
+
+
+colSums(combined_df[, -1])
 
 
 

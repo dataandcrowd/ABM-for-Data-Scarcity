@@ -534,7 +534,7 @@ CHOOSER
 no2-action
 no2-action
 "average" "random one"
-0
+1
 
 SLIDER
 605
@@ -543,9 +543,9 @@ SLIDER
 216
 IDW-beta
 IDW-beta
-0.5
+1
 2
-2.0
+1.0
 0.5
 1
 NIL
