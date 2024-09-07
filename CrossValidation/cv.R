@@ -2,8 +2,8 @@ library(tidyverse)
 library(janitor)
 library(data.table)
 
-cv_random_raw <- read_csv("beta2_random.csv") |> clean_names()
-cv_average_raw <- read_csv("beta2_average.csv") |> clean_names()
+cv_random_raw <- read_csv("beta1_random.csv") |> clean_names()
+cv_average_raw <- read_csv("beta1_average.csv") |> clean_names()
 
  
 cv_random_raw |> 
