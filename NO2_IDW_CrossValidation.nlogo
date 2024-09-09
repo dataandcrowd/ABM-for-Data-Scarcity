@@ -544,7 +544,7 @@ SLIDER
 IDW-beta
 IDW-beta
 1
-3
+2.5
 2.5
 0.5
 1
