@@ -3,20 +3,25 @@
 extensions [csv gis table]
 globals [
   ;;; Admin
-  gu road IMD lc visit districtPop districtadminCode station_background
-
-
+  gu road IMD lc visit
+  districtPop districtadminCode
+  station_background
+  clock
+  place-to-visit-age ;age-groups
 ]
 
 breed [borough-labels borough-label]
 breed[people person]
 
-patches-own [is-research-area? is-built-area? is-road? name homecode
-  is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2 ;; pollution related
-  IMDrank hospital is-visiting?
+patches-own [is-research-area? is-built-area? is-road? name homecode visiting? visiting-borough?
+  ;is-monitor-site? monitor-name monitor-code monitor-type ;nearest_station no2 ;; pollution related
+  IMDrank
+  ;hospital
 ]
 people-own  [health age districtName district-code
-             homeName homePatch destinationName destinationPatch]
+             homeName homePatch destinationName destinationPatch
+             place-to-visit
+   ]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -29,11 +34,13 @@ to setup
   set-gis-data
   set-urban-areas
   set-visit-places
+  set-date-clock
   add-admin
   add-IMD
   set-dictionaries
   set-people
   set-destination
+  set-visit-place
 
 end
 
@@ -113,8 +120,12 @@ end
 to set-visit-places
   foreach gis:feature-list-of visit [vector-feature ->
     ask patches[ if gis:intersects? vector-feature self [
-                                 set is-visiting? gis:property-value vector-feature "PrimaryUse"]
+                 set visiting? gis:property-value vector-feature "PrimaryUse"
+                 set visiting-borough? gis:property-value vector-feature "Borough"
+      ]
  ]]
+
+  ask patches with [visiting? = 0][set visiting? false]
 
  output-print "Visiting Place Assigned" ;;
 end
@@ -136,6 +147,21 @@ to add-IMD
 output-print "Deprivation Index added" ;;
 end
 
+
+to set-date-clock
+  let clock-raw csv:from-file "Data/date2019.csv"
+  let clock-rm-raw remove-item 0 clock-raw
+  set clock table:make
+
+  foreach clock-rm-raw [code ->
+    let date1 list(item 1 code)(item 2 code)
+    let date2 lput item 3 code date1
+    table:put clock item 0 code date2
+
+  ]
+
+
+end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 to set-dictionaries
@@ -286,36 +312,79 @@ to set-destination   ;; Decomposing matrix
 end
 
 
+to set-visit-place
+  ask people [
+    if age >= 16 and age <= 30 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Play space" "Other recreational"
+                                 "Walking/cycling route" "Adventure playground" "Youth area"
+                                 "Landscaping around premises" "Formal garden"
+                                 "Civic/market square"]
+    ]
+    if age > 30 and age <= 45 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Other recreational"
+                                 "Walking/cycling route" "Landscaping around premises"
+                                 "Formal garden" "Play space" "Recreation ground"
+                                 "City farm" "Allotments" "Civic/market square"]
+    ]
+    if age > 45 and age <= 65 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Allotments" "Walking/cycling route"
+                                 "City farm" "Village green" "Community garden"
+                                 "Formal garden" "Civic/market square"]
+    ]
+    if age > 65 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Village green" "Community garden"]
+    ]
+  ]
+
+end
+
+
+
+
+
 ;;;;;;;;;;;;
 ;; --go-- ;;
 ;;;;;;;;;;;;
 
 to go
-
-  move-people
+  move-to-work
+  non-work
 
   tick
-  if ticks = 890 [stop]
+  if ticks = 730 [stop]
 
 end
 
 ;;---------------------------------
 
-to move-people
-  ifelse ticks mod 2 = 0 [move-out][come-home]
-
+to move-to-work
+  ifelse (ticks mod 2 = 0) and (item 2 table:get clock ticks = "Weekday") [commute][come-home]
 end
 
-to move-out
-  ask people [if patch-here != destinationPatch [ move-to destinationPatch fd 1]
-  ]
+to commute
+  ask people [if patch-here != destinationPatch [ move-to destinationPatch fd 1]]
 end
 
 to come-home
-  ask people [
-    if patch-here != homePatch [move-to homePatch fd 1]
-  ]
+  ask people [if patch-here != homePatch [move-to homePatch fd 1]]
 end
+
+to non-work
+  ifelse (ticks mod 2 = 0) and (item 2 table:get clock ticks = "Weekend") [hangout][come-home]
+end
+
+to hangout
+
+
+
+
+  ;ask people [if patch]
+end
+
 
 
 
@@ -385,7 +454,7 @@ OUTPUT
 604
 24
 848
-153
+174
 12
 
 BUTTON
@@ -404,6 +473,39 @@ T
 NIL
 NIL
 1
+
+MONITOR
+603
+220
+697
+265
+Date (y-m-d)
+item 0 table:get clock ticks
+17
+1
+11
+
+MONITOR
+700
+220
+787
+265
+Home/Work
+item 1 table:get clock ticks
+17
+1
+11
+
+MONITOR
+602
+272
+698
+317
+Weekday/end
+item 2 table:get clock ticks
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
