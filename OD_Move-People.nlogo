@@ -3,7 +3,7 @@
 extensions [csv gis table]
 globals [
   ;;; Admin
-  gu road IMD lc districtPop districtadminCode station_background
+  gu road IMD lc visit districtPop districtadminCode station_background
 
 
 ]
@@ -13,7 +13,7 @@ breed[people person]
 
 patches-own [is-research-area? is-built-area? is-road? name homecode
   is-monitor-site? monitor-name monitor-code monitor-type nearest_station no2 ;; pollution related
-  IMDrank hospital
+  IMDrank hospital is-visiting?
 ]
 people-own  [health age districtName district-code
              homeName homePatch destinationName destinationPatch]
@@ -28,6 +28,7 @@ to setup
   reset-ticks
   set-gis-data
   set-urban-areas
+  set-visit-places
   add-admin
   add-IMD
   set-dictionaries
@@ -42,6 +43,7 @@ to set-gis-data
   set gu   gis:load-dataset "Data/London_Boundary_cleaned.shp"
   set lc   gis:load-dataset "Data/London_LandCover.shp"
   set road gis:load-dataset "Data/London_Road_Clean.shp"
+  set visit gis:load-dataset "Data/SpacesToVisit.shp"
   set IMD gis:load-dataset "Data/IMD2019_LocalAuthority_Upper.shp"
   ;; patch size: approx 200m x 200m
 
@@ -106,6 +108,16 @@ to set-urban-areas
  output-print "Land Cover Allocated" ;;
 end
 
+;;--------------------------------
+
+to set-visit-places
+  foreach gis:feature-list-of visit [vector-feature ->
+    ask patches[ if gis:intersects? vector-feature self [
+                                 set is-visiting? gis:property-value vector-feature "PrimaryUse"]
+ ]]
+
+ output-print "Visiting Place Assigned" ;;
+end
 
 ;;--------------------------------
 to add-IMD
@@ -283,7 +295,7 @@ to go
   move-people
 
   tick
-  if ticks = 2921 [stop]
+  if ticks = 890 [stop]
 
 end
 
@@ -304,7 +316,6 @@ to come-home
     if patch-here != homePatch [move-to homePatch fd 1]
   ]
 end
-
 
 
 
@@ -374,7 +385,7 @@ OUTPUT
 604
 24
 848
-360
+153
 12
 
 BUTTON
@@ -736,7 +747,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.3.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
