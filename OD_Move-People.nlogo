@@ -340,7 +340,7 @@ end
 
 to move-places
   ask people [
-  ifelse (ticks mod 2 = 0) or (ticks > 710) [
+  ifelse (ticks mod 2 = 0) or (ticks >= 208 and ticks <= 231) or (ticks > 710) [
     if (item 2 table:get clock ticks = "Weekday") [commute]
     if (item 2 table:get clock ticks = "Weekend") [hangout]
   ][come-home]
