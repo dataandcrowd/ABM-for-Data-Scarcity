@@ -7,20 +7,22 @@ globals [
   districtPop districtadminCode
   station_background
   clock
-  place-to-visit-age ;age-groups
+  place-to-visit-age
+  central
 ]
 
 breed [borough-labels borough-label]
 breed[people person]
 
-patches-own [is-research-area? is-built-area? is-road? name homecode visiting? visiting-borough?
+patches-own [is-research-area? is-built-area? central-London? is-road? name homecode visiting? visiting-borough?
   ;is-monitor-site? monitor-name monitor-code monitor-type ;nearest_station no2 ;; pollution related
   IMDrank
   ;hospital
 ]
 people-own  [health age districtName district-code
-             homeName homePatch destinationName destinationPatch
-             place-to-visit
+             homeName homePatch destinationName destinationPatch central-Londoner?
+             weekend-shopper?
+             place-to-visit visit-location
    ]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -40,7 +42,6 @@ to setup
   set-dictionaries
   set-people
   set-destination
-  set-visit-place
 
 end
 
@@ -52,6 +53,7 @@ to set-gis-data
   set road gis:load-dataset "Data/London_Road_Clean.shp"
   set visit gis:load-dataset "Data/SpacesToVisit.shp"
   set IMD gis:load-dataset "Data/IMD2019_LocalAuthority_Upper.shp"
+  set central gis:load-dataset "Data/central_activities_zone.shp"
   ;; patch size: approx 200m x 200m
 
   let base_envelope gis:envelope-of gu
@@ -126,6 +128,14 @@ to set-visit-places
  ]]
 
   ask patches with [visiting? = 0][set visiting? false]
+
+
+  foreach gis:feature-list-of visit [vector-feature ->
+    ask patches [if gis:intersects? vector-feature self [
+      set central-London? true
+  ]]]
+
+  ask patches with [central-London? != true][set central-London? false]
 
  output-print "Visiting Place Assigned" ;;
 end
@@ -211,7 +221,8 @@ to set-people
         move-to homePatch
         set destinationName "unidentified"
         set destinationPatch "unidentified"
-        ;set health 300
+        ifelse random-float 1 < 0.1 [set weekend-shopper? true][set weekend-shopper? false]
+        ifelse patch-here = central-London? [set central-Londoner? true][set central-Londoner? false]
       ]
       set ageGroupID AgeGroupID + 1
       ]
@@ -312,47 +323,13 @@ to set-destination   ;; Decomposing matrix
 end
 
 
-to set-visit-place
-  ask people [
-    if age >= 16 and age <= 30 [
-      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
-                                 "Common" "Public woodland" "Play space" "Other recreational"
-                                 "Walking/cycling route" "Adventure playground" "Youth area"
-                                 "Landscaping around premises" "Formal garden"
-                                 "Civic/market square"]
-    ]
-    if age > 30 and age <= 45 [
-      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
-                                 "Common" "Public woodland" "Other recreational"
-                                 "Walking/cycling route" "Landscaping around premises"
-                                 "Formal garden" "Play space" "Recreation ground"
-                                 "City farm" "Allotments" "Civic/market square"]
-    ]
-    if age > 45 and age <= 65 [
-      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
-                                 "Common" "Public woodland" "Allotments" "Walking/cycling route"
-                                 "City farm" "Village green" "Community garden"
-                                 "Formal garden" "Civic/market square"]
-    ]
-    if age > 65 [
-      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
-                                 "Common" "Public woodland" "Village green" "Community garden"]
-    ]
-  ]
-
-end
-
-
-
-
-
 ;;;;;;;;;;;;
 ;; --go-- ;;
 ;;;;;;;;;;;;
 
 to go
-  move-to-work
-  non-work
+
+  move-places
 
   tick
   if ticks = 730 [stop]
@@ -361,33 +338,74 @@ end
 
 ;;---------------------------------
 
-to move-to-work
-  ifelse (ticks mod 2 = 0) and (item 2 table:get clock ticks = "Weekday") [commute][come-home]
+to move-places
+  ask people [
+  ifelse (ticks mod 2 = 0) or (ticks > 710) [
+    if (item 2 table:get clock ticks = "Weekday") [commute]
+    if (item 2 table:get clock ticks = "Weekend") [hangout]
+  ][come-home]
+  ]
 end
 
 to commute
-  ask people [if patch-here != destinationPatch [ move-to destinationPatch fd 1]]
+  if patch-here != destinationPatch [ move-to destinationPatch fd 1]
 end
 
 to come-home
-  ask people [if patch-here != homePatch [move-to homePatch fd 1]]
-end
-
-to non-work
-  ifelse (ticks mod 2 = 0) and (item 2 table:get clock ticks = "Weekend") [hangout][come-home]
+  if patch-here != homePatch [move-to homePatch fd 1]
 end
 
 to hangout
+   if random-float 1 < 0.75 [
+    ifelse (weekend-shopper? = true) and (central-Londoner? = false)
+    [set visit-location one-of patches with [visiting? = "Common" and central-London? = true]
+     set place-to-visit "Central London"][update-visit-place]
+     if visit-location != 0 [move-to visit-location]
+  ]
 
-
-
-
-  ;ask people [if patch]
 end
 
 
+to update-visit-place
+
+    if age >= 16 and age <= 30 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Play space" "Other recreational"
+                                 "Walking/cycling route" "Adventure playground" "Youth area"
+                                 "Landscaping around premises" "Formal garden"
+                                 "Civic/market square"]
+
+    ]
+    if age > 30 and age <= 45 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Other recreational"
+                                 "Walking/cycling route" "Landscaping around premises"
+                                 "Formal garden" "Play space" "Recreation ground"
+                                 "City farm" "Allotments" "Civic/market square"]
+
+    ]
+    if age > 45 and age <= 65 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Allotments" "Walking/cycling route"
+                                 "City farm" "Village green" "Community garden"
+                                 "Formal garden" "Civic/market square"]
+
+    ]
+    if age > 65 [
+      set place-to-visit one-of ["Park" "Amenity green space" "Recreation ground" "Nature reserve"
+                                 "Common" "Public woodland" "Village green" "Community garden"]
+    ]
 
 
+    let destination-patch min-one-of patches with [visiting? = [place-to-visit] of myself] [distance myself]
+
+  if destination-patch != nobody [
+    set visit-location destination-patch
+  ]
+
+
+
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 108
