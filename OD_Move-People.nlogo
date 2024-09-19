@@ -3,7 +3,7 @@
 extensions [csv gis table]
 globals [
   ;;; Admin
-  gu road IMD lc visit
+  borough road IMD lc visit
   districtPop districtadminCode
   station_background
   clock
@@ -42,13 +42,14 @@ to setup
   set-dictionaries
   set-people
   set-destination
+  remove-young-old
 
 end
 
 to set-gis-data
   ask patches [set pcolor white]
   gis:load-coordinate-system (word "Data/London_Boundary_cleaned.prj")
-  set gu   gis:load-dataset "Data/London_Boundary_cleaned.shp"
+  set borough   gis:load-dataset "Data/London_Boundary_cleaned.shp"
   set lc   gis:load-dataset "Data/London_LandCover.shp"
   set road gis:load-dataset "Data/London_Road_Clean.shp"
   set visit gis:load-dataset "Data/SpacesToVisit.shp"
@@ -56,7 +57,7 @@ to set-gis-data
   set central gis:load-dataset "Data/central_activities_zone.shp"
   ;; patch size: approx 200m x 200m
 
-  let base_envelope gis:envelope-of gu
+  let base_envelope gis:envelope-of borough
 
   let span_x abs ( item 0 base_envelope - item 1 base_envelope )
   let span_y abs ( item 2 base_envelope - item 3 base_envelope )
@@ -70,10 +71,10 @@ to set-gis-data
 
   gis:set-world-envelope expanded_envelope
 
-  ;gis:set-world-envelope (gis:envelope-union-of gis:envelope-of gu)
-  ask patches gis:intersecting gu [set is-research-area? true]
+  ;gis:set-world-envelope (gis:envelope-union-of gis:envelope-of borough)
+  ask patches gis:intersecting borough [set is-research-area? true]
   ask patches gis:intersecting road [set is-road? true]
-  gis:set-drawing-color [64  64  64]    gis:draw gu 1
+  gis:set-drawing-color [64  64  64]    gis:draw borough 1
   gis:set-drawing-color 7    gis:draw road 1
 
   ask patches with [is-research-area? != true][set is-research-area? false set name false set homecode false]
@@ -83,7 +84,7 @@ to set-gis-data
 
   ;; add GIS labels
 
-  foreach gis:feature-list-of gu [vector-feature ->
+  foreach gis:feature-list-of borough [vector-feature ->
   let centroid gis:location-of gis:centroid-of vector-feature
        if not empty? centroid
       [ create-borough-labels 1
@@ -98,7 +99,7 @@ end
 
 to add-admin
   gis:set-drawing-color blue
-  foreach gis:feature-list-of gu [vector-feature ->
+  foreach gis:feature-list-of borough [vector-feature ->
     ask patches[ if gis:intersects? vector-feature self [set name gis:property-value vector-feature "NAME"
                                  set homecode gis:property-value vector-feature "GSS_CODE"]
  ]]
@@ -269,7 +270,7 @@ to set-destination   ;; Decomposing matrix
 
   foreach table:keys Matrix [ originName ->
     let matrix-loop 0
-    let Num count people with [homeName = originName and (age >= 15 and age < 65)]
+    let Num count people with [homeName = originName and (age >= 16 and age < 65)]
     let totalUsed 0
     let number 0
 
@@ -282,7 +283,7 @@ to set-destination   ;; Decomposing matrix
       ;; "fraction of region A", population x "fraction of region B"...
       ;; if agents move outside district, then count the remainder of the population not used for inbound population
          let peopleRemaining (people with [homeName = originName and destinationName = "unidentified"
-                and (age >= 15 and age < 65)])
+                and (age >= 16 and age < 65)])
          if count peopleRemaining > 0 and count peopleRemaining <= number [ set number count peopleRemaining ]
                if number < 0 [ set number 0]
 
@@ -320,6 +321,12 @@ to set-destination   ;; Decomposing matrix
 
  ask people with [destinationname = "unidentified"][die] ;; We inevitably had to delete 8 agents from the City of London
   output-print "Set OD matrix" ;;
+end
+
+
+to remove-young-old
+  ask people with [age < 16 or age >= 65][die]
+
 end
 
 
