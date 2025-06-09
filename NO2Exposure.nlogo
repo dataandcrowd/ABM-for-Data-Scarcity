@@ -476,7 +476,7 @@ to go
   export-westminster-exposure
 
   tick
-  if ticks = 890 [ stop ]
+  if ticks = 730 [ stop ]
 
 end
 
