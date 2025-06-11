@@ -472,8 +472,9 @@ to go
 
   move-places
   get-exposed
-  export-kingston-exposure
-  export-westminster-exposure
+  export-exposure
+  ;export-kingston-exposure
+  ;export-westminster-exposure
 
   tick
   if ticks = 730 [ stop ]
@@ -667,13 +668,13 @@ to get-exposed
 end
 
 
-to export-kingston-exposure
-  let filename "kingston-no2-exposure.csv"
+to export-exposure
+  let filename "no2-exposure.csv"
 
   ;; Write header if file doesn't exist
   if not file-exists? filename [
     file-open filename
-    file-print "tick,person-id,age,homeName,destinationName,no2-exposed"
+    file-print "tick,person-id,age,homeName,destinationName,no2"
     file-close
   ]
 
@@ -685,7 +686,7 @@ to export-kingston-exposure
       who ","        ; turtle ID
       age ","        ; age of the person
       homeName ","   ; should be "Kingston upon Thames"
-      destinationName
+      destinationName ","
       no2-exposed    ; the NO₂ exposure on their patch
     )
   ]
@@ -699,7 +700,7 @@ to export-westminster-exposure
   ;; Write header if file doesn't exist
   if not file-exists? filename [
     file-open filename
-    file-print "tick,person-id,age,homeName,destinationName,no2-exposed"
+    file-print "tick,person-id,age,homeName,destinationName,no2"
     file-close
   ]
 
