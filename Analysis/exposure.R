@@ -47,9 +47,10 @@ ggplot(route_summary, aes(x = tick, y = mean_no2, colour = route_type)) +
     x     = "Time (halfday)",
     y     = "NO2"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(text = element_text(size = 20))
 
-ggsave("graph2.jpg", width = 9, height = 5, dpi = 600)
+ggsave("graph2.png", width = 9, height = 5, dpi = 600)
 
 
 ##########
@@ -62,28 +63,75 @@ summary_df <- exposure2 %>%
   group_by(home_name) %>%
   summarise(mean_no2 = mean(no2, na.rm=TRUE), .groups="drop")
 
-map_sf <- boroughs_sf %>%
-  left_join(summary_df, by = c("NAME" = "home_name"))
-
-map_plot <- ggplot(map_sf) +
-  geom_sf(aes(fill = mean_no2), colour = "grey30") +
-  scale_fill_viridis_c(name = "NO2") +
-  #labs(title = "Spatial Distribution of NO₂") +
-  theme_void() 
-
 dot_plot <- summary_df %>%
   arrange(mean_no2) %>%
   mutate(home_name = factor(home_name, levels=home_name)) %>%
   ggplot(aes(mean_no2, home_name)) +
   geom_point(size=2, colour="#2c3e50") +
-  labs(x="NO2", y=NULL, title="Exposure to NO2 by London Boroughs") +
-  theme_minimal()
+  labs(x="NO2", y=NULL, title="Mean Exposure to NO2 by London Boroughs") +
+  theme_minimal() 
 
-map_plot + dot_plot + plot_layout(widths = c(2,1))
+ggsave("graph.png", dot_plot, width = 5, height = 7, dpi = 600)
 
-ggsave("London.png", map_plot, dpi = 600)
-ggsave("graph.jpg", dot_plot, width = 5, height = 7, dpi = 600)
+###------------
+
+label_points <- map_sf %>%
+  st_point_on_surface() %>%
+  st_cast("POINT")
+
+ggplot() +
+  geom_sf(
+    data   = map_sf,
+    aes(fill = mean_no2),
+    colour = "grey30"
+  ) +
+  scale_fill_viridis_c(name = "NO2") +
+  geom_label_repel(
+    data            = label_points,
+    aes(label       = NAME, geometry = geometry),
+    stat            = "sf_coordinates",
+    size            = 2.5,
+    fill            = alpha("white", 0.6),
+    label.size      = 0,
+    segment.color   = 1
+  ) +
+  theme_void() +
+  theme(
+    legend.title           = element_text(color = "white"),
+    legend.text            = element_text(color = "white"),
+    legend.background      = element_rect(fill = "transparent", colour = NA),
+    legend.key             = element_rect(fill = "transparent", colour = NA),
+    legend.box.background  = element_blank()           # also clears any outer box
+  )
+
+ggsave("map.png",  dpi = 600)
 
 
-##-----------------
+####
 
+exposure2 |> filter(home_name == "Kingston upon Thames", 
+                    destination_name == "Westminster")
+
+exposure2 |> 
+  filter(person_id == 7095) |> 
+  ggplot(aes(tick, no2, colour = daytype)) +
+  geom_smooth() +
+  labs(x="Time", y="NO2") +
+  theme_minimal() +
+  theme(text = element_text(size = 20),
+        legend.position = "none") 
+
+ggsave("persona1.png",  dpi = 600)
+
+
+
+exposure2 |> 
+  filter(person_id == 5840) |> 
+  ggplot(aes(tick, no2, colour = daytype)) +
+  geom_smooth() +
+  labs(x="Time", y="NO2") +
+  theme_minimal() +
+  theme(text = element_text(size = 20),
+        legend.position = "none") 
+
+ggsave("persona2.png",  dpi = 600)
