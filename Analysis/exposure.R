@@ -184,3 +184,13 @@ map_plot + dot_plot + plot_layout(widths = c(2,1))
 ggsave("London.png", map_plot, dpi = 600)
 ggsave("graph.png", dot_plot, width = 5, height = 7, dpi = 600)
 
+
+##-----------------
+
+kst |> 
+  filter(person_id == 7116) |> 
+  ggplot(aes(tick, no2)) +
+  geom_line() + 
+  geom_smooth() +
+  theme_minimal()
+
