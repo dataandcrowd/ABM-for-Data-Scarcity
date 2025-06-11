@@ -674,24 +674,27 @@ to export-exposure
   ;; Write header if file doesn't exist
   if not file-exists? filename [
     file-open filename
-    file-print "tick,person-id,age,homeName,destinationName,no2"
+    file-print "tick,person-id,age,homeName,destinationName,no2,daytype"
     file-close
   ]
 
   ;; Append current exposures
   file-open filename
-  ask people with [homeName = "Kingston upon Thames"] [
+  ask people [
+    let daytype item 2 table:get clock ticks
     file-print (word
       ticks ","      ; current tick
       who ","        ; turtle ID
       age ","        ; age of the person
-      homeName ","   ; should be "Kingston upon Thames"
+      homeName ","   ; e.g. "Kingston upon Thames"
       destinationName ","
-      no2-exposed    ; the NO₂ exposure on their patch
+      no2-exposed ","; the NO₂ exposure on their patch
+      daytype        ; "Weekday" or "Weekend"
     )
   ]
   file-close
 end
+
 
 
 to export-westminster-exposure
@@ -731,7 +734,7 @@ to iterate-10-times
 end
 
 to go-until-2921
-  while [ticks < 890] [
+  while [ticks < 730] [
     go
   ]
 end
