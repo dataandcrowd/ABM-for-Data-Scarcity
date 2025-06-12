@@ -68,12 +68,18 @@ dot_plot <- summary_df %>%
   mutate(home_name = factor(home_name, levels=home_name)) %>%
   ggplot(aes(mean_no2, home_name)) +
   geom_point(size=2, colour="#2c3e50") +
-  labs(x="NO2", y=NULL, title="Mean Exposure to NO2 by London Boroughs") +
+  labs(x="NO2", y=NULL, title="Mean Exposure to NO2\n by London Boroughs") +
   theme_minimal() 
 
 ggsave("graph.png", dot_plot, width = 5, height = 7, dpi = 600)
 
 ###------------
+library(ggrepel)
+
+map_sf <- boroughs_sf %>%
+  left_join(summary_df, by = c("NAME" = "home_name"))
+
+#st_write(map_sf, "map.gpkg")
 
 label_points <- map_sf %>%
   st_point_on_surface() %>%
@@ -117,6 +123,7 @@ exposure2 |>
   ggplot(aes(tick, no2, colour = daytype)) +
   geom_smooth() +
   labs(x="Time", y="NO2") +
+  ylim(30, 60) +
   theme_minimal() +
   theme(text = element_text(size = 20),
         legend.position = "none") 
@@ -130,6 +137,7 @@ exposure2 |>
   ggplot(aes(tick, no2, colour = daytype)) +
   geom_smooth() +
   labs(x="Time", y="NO2") +
+  ylim(30, 60) +
   theme_minimal() +
   theme(text = element_text(size = 20),
         legend.position = "none") 
